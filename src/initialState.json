@@ -1,0 +1,64 @@
+{
+    "allGameLists": {
+        "isFetching": true,
+        "didInvalidate": false,
+        "gameLists": [
+            {
+                "id": 1,
+                "createTimeStamp": 1490033552,
+                "updateTimeStamp": 1490033552,
+                "name": "Best RPGs",
+                "img": "https://pbs.twimg.com/media/Cn4klgrXEAA7OZC.jpg",
+                "creator": 1,
+                "gameIds": [1]
+            }
+        ]
+    },
+    "allGames": {
+        "isFetching": true,
+        "didInvalidate": false,
+        "games": [
+            {
+                "id": 1,
+                "createTimeStamp": 1490033552,
+                "updateTimeStamp": 1490033552,
+                "title": "Witcher",
+                "platform": ["Xbox", "PS4"],
+                "gameType": "RPG",
+                "studio": "red",
+                "price": 12,
+                "totalRating": 4.0,
+                "releaseCompany": "EA",
+                "releaseDate": "2016-06-07",
+                "tag": ["la", "ba", "ha"]
+            }
+        ]
+    },
+    "user": {
+        "id": 1,
+        "email": "fuckyou@gmail.com",
+        "password": "12345",
+        "admin": true,
+        "isVerified": true,
+        "name": "wangye",
+        "avatar": "https://pbs.twimg.com/media/Cn4klgrXEAA7OZC.jpg",
+        "age": 100,
+        "address": "boston",
+        "sex": "female",
+        "mobile": "12222222222222"
+    },
+    "allReviews": {
+        "isFetching": true,
+        "didInvalidate": false,
+        "reviews": [
+            {
+                "id": 1,
+                "uesrId": 1,
+                "createTimeStamp": 1490033552,
+                "updateTimeStamp": 1490033552,
+                "rating": 4.0,
+                "content": "lalalalalalalala"
+            }
+        ]
+    }
+}
