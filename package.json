@@ -2,9 +2,9 @@
   "name": "front-end-gamerating",
   "version": "0.0.1",
   "description": "The front end of the gamerating.info",
-  "main": "./dist",
+  "main": "webpack.config.js",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server"
+    "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.js --open"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,14 @@
   "homepage": "https://github.com/Cranberry-game/front-end-gamerating#readme",
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
+    "jwt-decode": "^2.2.0",
     "material-ui": "^0.17.1",
+    "material-ui-chip-input": "^0.13.1",
+    "material-ui-rating": "^1.1.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
-    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.2",
@@ -39,7 +42,9 @@
     "babel-preset-stage-0": "^6.22.0",
     "css-loader": "^0.27.3",
     "json-loader": "^0.5.4",
+    "node-sass": "^4.5.1",
     "postcss-loader": "^1.3.3",
+    "sass-loader": "^6.0.3",
     "style-loader": "^0.14.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.2"

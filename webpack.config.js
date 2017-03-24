@@ -2,7 +2,8 @@ const path = require('path');
 const webpack = require('webpack')
 
 module.exports = {
-    entry: './src/index.jsx',
+    devtool: 'source-map',
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -11,12 +12,12 @@ module.exports = {
     devServer: {
         inline: true,
         contentBase: path.resolve(__dirname, 'dist'),
-        port: 8000
+        port: 3000
     },
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: {
                     loader: 'babel-loader',
