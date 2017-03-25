@@ -4,15 +4,20 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import { Provider } from 'react-redux'
 import { App } from './components'
 import Test from './components/ui/Test'
+import storeFactory from './store'
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin()
 
+const store = storeFactory()
 window.React = React
+window.store = store
     
 
 render (
-    <App/>,
+    <Provider store={store}>
+        {App}
+    </Provider>,
     document.getElementById('react-container')
 )

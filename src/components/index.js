@@ -1,13 +1,19 @@
-// import '../css/style.scss'
+import '../css/style.scss'
+import React from 'react'
 import Test from './ui/Test'
 import Home from './ui/Home'
 import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import muiTheme from './MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
+import Search from './ui/Search'
+import GameListDetail from './ui/GameListDetail'
 
+const appBarStyle = {
+    position: 'fixed',
+}
 
-export const App = () => (
+export const App = (
     <Router>
         <div>
             <MuiThemeProvider muiTheme={muiTheme}>
@@ -16,6 +22,8 @@ export const App = () => (
             
             <Switch>
                 <Route exact={true} path="/" component={Home} />
+                <Route path="/search/:searchText" component={Search}/>
+                <Route path="/gamelist/:listId" component={GameListDetail}/>
                 <Route path="/test" component={Test} />
                 <Route component={NoMatch} />
             </Switch>

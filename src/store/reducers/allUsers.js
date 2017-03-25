@@ -1,41 +1,30 @@
-import C from '../../constants'
+import { FETCH_USERS_REQUEST, CANCEL_FETCHING_USERS, FETCH_USERS_SUCCESS, FETCH_USERS_FAILED } from '../../constants'
+import { combineReducers } from 'redux'
 
-const initialState = {
-    "isFetching": false,
-    "didValidate": false,
-    "users": []
-};
-
-export const allGameLists = (state=initialState, action) => {
+const isFetching = (state=false, action) => {
     switch (action.type) {
-    case C.FETCH_USERS_REQUEST: 
-        return (state.isFetching)? 
-        state:
-        {
-            "isFetching": true,
-            "didValidate": false,
-            "users": state.users
-        }
-    case C.CANCEL_FETCHING_USERS:
-        return {
-            "isFetching": false,
-            "didValidate": false,
-            "users": state.users
-        }
-    // payload should contains gamelists
-    case C.FETCH_USERS_SUCCESS:
-        return {
-            "isFetching": false,
-            "didValidate": true,
-            "users": action.payload.users
-        }
-    case C.FETCH_USERS_FAILED:
-        return {
-            "isFetching": false,
-            "didValidate": false,
-            "users": []
-        }
-    default:
-        return state
+        case FETCH_USERS_REQUEST:
+            return true
+        case CANCEL_FETCHING_USERS:
+            return false
+        case FETCH_USERS_SUCCESS:
+            return false
+        case FETCH_USERS_FAILED:
+            return false
+        default:
+            return state
     }
 }
+
+const users = (state=[], action) => {
+    switch (action.type) {
+        case FETCH_USERS_SUCCESS:
+            return action.payload
+        default:
+            return state
+    }
+}
+export default combineReducers({
+    isFetching,
+    users
+})

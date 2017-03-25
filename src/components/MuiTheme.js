@@ -1,6 +1,6 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 
-const muiTheme = getMuiTheme(darkBaseTheme)
+const muiTheme = getMuiTheme(lightBaseTheme)
 
 export default muiTheme

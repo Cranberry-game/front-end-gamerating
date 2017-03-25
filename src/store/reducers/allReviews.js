@@ -1,41 +1,31 @@
-import C from '../../constants'
+import { FETCH_REVIEWS_REQUEST, CANCEL_FETCHING_REVIEWS, FETCH_REVIEWS_SUCCESS, FETCH_REVIEWS_FAILED } from '../../constants'
+import { combineReducers } from 'redux'
 
-const initialState = {
-    "isFetching": false,
-    "didValidate": false,
-    "reviews": []
-};
-
-export const allGames = (state=initialState, action) => {
+const isFetching = (state=false, action) => {
     switch (action.type) {
-    case C.FETCH_REVIEWS_REQUEST: 
-        return (state.isFetching)?
-        state:
-        {
-            "isFetching": true,
-            "didValidate": false,
-            "reviews": state.reviews
-        }
-    case C.CANCEL_FETCHING_REVIEWS:
-        return {
-            "isFetching": false,
-            "didValidate": false,
-            "reviews": state.reviews
-        }
-    // payload should contains gamelists
-    case C.FETCH_REVIEWS_SUCCESS:
-        return {
-            "isFetching": false,
-            "didValidate": true,
-            "reviews": action.payload.reviews
-        }
-    case C.FETCH_REVIEWS_FAILED:
-        return {
-            "isFetching": false,
-            "didValidate": false,
-            "reviews": []
-        }
-    default:
-        return state
+        case FETCH_REVIEWS_REQUEST:
+            return true
+        case CANCEL_FETCHING_REVIEWS:
+            return false
+        case FETCH_REVIEWS_SUCCESS:
+            return false
+        case FETCH_REVIEWS_FAILED:
+            return false
+        default:
+            return state
     }
 }
+
+const reviews = (state=[], action) => {
+    switch (action.type) {
+        case FETCH_REVIEWS_SUCCESS:
+            return action.type
+        default:
+            return state
+    }
+}
+
+export default combineReducers({
+    isFetching,
+    reviews
+})

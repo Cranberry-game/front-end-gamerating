@@ -1,0 +1,54 @@
+@import '../style';
+
+.story-header {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: #999 50% 50% repeat;
+    color: #fff;
+    text-align: center;
+    z-index: 0;
+    .story-header-cover {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        background: #000;
+        opacity: 0.55;
+
+    }
+    .story-header-imgContainer {
+        height: 100%;
+        overflow: hidden;
+        .story-header-imgContainer-img {
+            position: relative;
+            right: 250%;
+            width: 600%;
+            height: 100%;
+            img {
+                display: block;
+                height: 100%;
+                margin: 0 auto;
+            }
+        }
+    }
+    .story-header-inner {
+        position: absolute;
+        top: 35px;
+        height: 30px;
+        line-height: 30px;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        table-layout: fixed;
+        .story-header-text {
+            display: table-cell;
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+            text-shadow: 0px 1px 2px #333;
+        }
+    }
+}

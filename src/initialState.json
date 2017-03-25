@@ -10,7 +10,6 @@
     },
     "allGameLists": {
         "isFetching": false,
-        "didValidate": true,
         "gameLists": [
             {
                 "id": 1,
@@ -25,7 +24,6 @@
     },
     "allGames": {
         "isFetching": false,
-        "didValidate": true,
         "games": [
             {
                 "id": 1,
@@ -45,7 +43,6 @@
     },
     "allUsers": {
         "isFetching": false,
-        "didValidate": true,
         "users": [
             {
                 "id": 1,
@@ -65,7 +62,6 @@
     },
     "allReviews": {
         "isFetching": false,
-        "didValidate": true,
         "reviews": [
             {
                 "id": 1,
@@ -76,5 +72,10 @@
                 "content": "lalalalalalalala"
             }
         ]
-    }
+    },
+    "suggestions": {
+        "isFetching": false,
+        "gameNames": ["RE6"]
+    },
+    "searchText": ""
 }
