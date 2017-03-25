@@ -32,8 +32,8 @@ export const App = (
 )
 
 const NoMatch = ({ location }) => (
-    <div>
-        <h1>Page Not Found</h1>
-        <p>Cannot Load path at <code>{location.pathname}</code></p>
+    <div className="no-match">
+        <h1 className="no-match-header">Page Not Found</h1>
+        <p className="no-match-desc">Cannot Load path at <code>{location.pathname}</code></p>
     </div>
 )
