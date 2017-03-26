@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/63cf54a350c102c1edbca72ec60ef20051c00799/react-slick/index.d.ts",
+    "raw": "registry:dt/react-slick#0.0.0+20170201050212",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/63cf54a350c102c1edbca72ec60ef20051c00799/react-slick/index.d.ts"
+  }
+}

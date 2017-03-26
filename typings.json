@@ -6,6 +6,7 @@
     "isomorphic-fetch": "registry:dt/isomorphic-fetch#0.0.0+20170223183302",
     "material-ui": "registry:dt/material-ui#0.16.0+20170323194905",
     "react-router-dom": "registry:dt/react-router-dom#4.0.0+20170323201651",
+    "react-slick": "registry:dt/react-slick#0.0.0+20170201050212",
     "redux": "registry:dt/redux#3.5.2+20160703092728",
     "redux-thunk": "registry:dt/redux-thunk#2.1.0+20160703120921"
   },
