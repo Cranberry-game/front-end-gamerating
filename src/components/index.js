@@ -22,7 +22,6 @@ export const App = (
                 </MuiThemeProvider>    
             </div>
             
-            
             <Switch>
                 <Route exact={true} path="/" component={Home} />
                 <Route path="/search/:searchText" component={Search}/>
