@@ -36,7 +36,18 @@
             p {
                 line-height: 20px;
                 padding: 2px 0;
-                font-size: 14px;
+                font-size: 18px;
+                text-shadow: none;
+                overflow: hidden;
+                word-wrap: break-word;
+            }
+        }
+
+        .info {
+            .comment-time {
+                line-height: 20px;
+                padding: 2px 0;
+                font-size: 12px;
                 text-shadow: none;
                 overflow: hidden;
                 word-wrap: break-word;

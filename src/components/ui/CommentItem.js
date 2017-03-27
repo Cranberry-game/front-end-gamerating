@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Avatar from 'material-ui/Avatar'
 import '../../css/components/CommentItem.scss'
 
-const CommentItem =({userName="wangye", commentTime="2017-03-01", rate=3, comment="llala"}) => {
+const CommentItem =({userName="wangye", commentTime="2017-03-01", rate=3, comment="This gamelist is awesome!"}) => {
     return (
         <div className='list-item reply-wrap'>
             <div className='user-face'>
