@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import muiTheme from '../MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AutoComplete from 'material-ui/AutoComplete'
+import RegisterForm from './RegisterForm'
+import LoginForm from './LoginForm'
 
 const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput}) => {
 
@@ -16,11 +18,7 @@ const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput}) => {
             </div>
             <div className='search-bar-container'>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <AutoComplete
-                    hintText="Type the game you want to search"
-                    dataSource={dataSource}
-                    onUpdateInput={handleUpdateInput}
-                />
+                    <AutoComplete hintText="Type the game you want to search" dataSource={dataSource} onUpdateInput={handleUpdateInput}/>
                 </MuiThemeProvider>
             </div>
         </div>

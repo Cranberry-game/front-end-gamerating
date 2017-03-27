@@ -8,6 +8,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
 import Search from './ui/Search'
 import GameListDetail from './ui/GameListDetail'
+import TextField from 'material-ui/TextField'
+import ExpandingSearchButton from './ui/ExpandingSearchButton'
 
 const appBarStyle = {
     position: 'fixed',
@@ -18,7 +20,10 @@ export const App = (
         <div>
             <div className='navigator'>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <AppBar title="Game Rating" />
+                    <AppBar title="Game Rating">
+                        {/*<TextField hintText="User Name" underlineShow={false} />*/}
+                        <ExpandingSearchButton/>
+                    </AppBar>
                 </MuiThemeProvider>    
             </div>
             
