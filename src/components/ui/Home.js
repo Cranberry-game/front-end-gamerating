@@ -10,15 +10,19 @@ const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput}) => {
     }
 
     return (
-        <div>
-            <h1>Game Rating</h1>
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <AutoComplete
-                hintText="Type the game you want to search"
-                dataSource={dataSource}
-                onUpdateInput={handleUpdateInput}
-            />
-            </MuiThemeProvider>
+        <div className="home-page-container">
+            <div className='home-page-title-container'>
+                <h1 className="home-page-title">Game Rating</h1>
+            </div>
+            <div className='search-bar-container'>
+                <MuiThemeProvider muiTheme={muiTheme}>
+                    <AutoComplete
+                    hintText="Type the game you want to search"
+                    dataSource={dataSource}
+                    onUpdateInput={handleUpdateInput}
+                />
+                </MuiThemeProvider>
+            </div>
         </div>
     )
 }
