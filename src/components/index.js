@@ -16,9 +16,12 @@ const appBarStyle = {
 export const App = (
     <Router>
         <div>
-            <MuiThemeProvider muiTheme={muiTheme}>
-            <AppBar title="Game Rating" />
-            </MuiThemeProvider>
+            <div className='navigator'>
+                <MuiThemeProvider muiTheme={muiTheme}>
+                    <AppBar title="Game Rating" />
+                </MuiThemeProvider>    
+            </div>
+            
             
             <Switch>
                 <Route exact={true} path="/" component={Home} />
