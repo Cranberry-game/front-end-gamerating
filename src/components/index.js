@@ -22,7 +22,6 @@ export const App = (
             <div className='navigator'>
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <AppBar title="Game Rating">
-                        <ExpandingSearchButton/>
                     </AppBar>
                 </MuiThemeProvider>    
             </div>
