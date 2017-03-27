@@ -1,1 +1,23 @@
 @import '../style';
+
+.home-page-container {
+    position: relative;
+    text-align: center;
+    // height: 500px;
+
+    .home-page-title-container {
+
+        .home-page-title {
+            height: 300px;
+            line-height: 300px;
+            font-size: 6em;
+            // overflow: hidden;
+        }
+    }
+
+    .search-bar-container {
+        position: relative;
+        top: -50px;
+
+    }
+}
