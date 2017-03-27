@@ -19,7 +19,7 @@ const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput}) => {
             </div>
             <div className='search-bar-container'>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <AutoComplete hintText="Type the game you want to search" dataSource={dataSource} onUpdateInput={handleUpdateInput}/>
+                    <AutoComplete hintText="Type the game you want to search" dataSource={dataSource} onUpdateInput={handleUpdateInput} className="home-page-search-bar"/>
                 </MuiThemeProvider>
             </div>
         </div>

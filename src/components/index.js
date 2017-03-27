@@ -11,6 +11,7 @@ import GameListDetail from './ui/GameListDetail'
 import GameDetail from './ui/GameDetail'
 import TextField from 'material-ui/TextField'
 import ExpandingSearchButton from './ui/ExpandingSearchButton'
+import FlatButton from 'material-ui/FlatButton'
 
 const appBarStyle = {
     position: 'fixed',
@@ -22,6 +23,8 @@ export const App = (
             <div className='navigator'>
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <AppBar title="Game Rating">
+                        <FlatButton label="Register" />
+                        <FlatButton label="Login" />
                     </AppBar>
                 </MuiThemeProvider>    
             </div>
