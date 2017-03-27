@@ -1,13 +1,14 @@
 import muiTheme from '../MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Avatar from 'material-ui/Avatar'
+import '../../css/components/CommentItem.scss'
 
 const CommentItem =({userName="wangye", commentTime="2017-03-01", rate=3, comment="llala"}) => {
     return (
         <div className='list-item reply-wrap'>
             <div className='user-face'>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <Avatar src='http://img0.pconline.com.cn/pconline/1408/11/5254676_1407293-3_thumb.jpg'/>
+                    <Avatar src='http://img.duoziwang.com/2016/12/08/18594927932.jpg'/>
                 </MuiThemeProvider>
             </div>
             <div className='con no-border'>

@@ -1,0 +1,46 @@
+@import "../style";
+
+.list-item {
+
+    .user-face {
+        float: left;
+        margin: 24px 0 0 5px;
+        position: relative;
+    }
+
+    .no-border {
+        border-top: none;
+    }
+
+    .con{
+        position: relative;
+        margin-left: 85px;
+        padding: 22px 0 14px;
+    
+        .user {
+                font-size: 12px;
+                font-weight: 700;
+                line-height: 18px;
+                padding-bottom: 4px;
+                display: block;
+                word-wrap: break-word;
+
+            .comment-info-container {
+
+                .user-name{
+                    color: #6d757a;
+                }
+            }
+        }
+        .comment-body-container {
+            p {
+                line-height: 20px;
+                padding: 2px 0;
+                font-size: 14px;
+                text-shadow: none;
+                overflow: hidden;
+                word-wrap: break-word;
+            }
+        }
+    }
+}
