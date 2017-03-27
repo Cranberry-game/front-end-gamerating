@@ -1,0 +1,49 @@
+@import "../style";
+
+.comment-send {
+    margin: 10px 0;
+
+    .user-face {
+        float: left;
+        margin: 7px 0 0 5px;
+        position: relative;
+    }
+
+    .textarea-container {
+        position: relative;
+        margin-left: 85px;
+        margin-right: 80px;
+
+        .comment-submit {
+            width: 70px;
+            height: 64px;
+            position: absolute;
+            right: -80px;
+            top: 0;
+            padding: 4px 15px;
+            font-size: 14px;
+            color: #fff;
+            border-radius:4px;
+            text-align: center;
+            vertical-align: top;
+            background-color: palevioletred;
+            border: 1px solid purple;
+            transition: .1s;
+            user-select: none; 
+        }
+
+        textarea {
+            display: inline-block;
+            box-sizing: border-box;
+            border: 1px solid gray;
+            overflow: auto;
+            border-radius: 4px;
+            color: #555;
+            width: 100% !important;
+            height: 65px;
+            padding: 5px 10px;
+        }
+    }
+
+
+}

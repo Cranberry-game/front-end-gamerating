@@ -7,7 +7,7 @@ const CommentItem =({userName="wangye", commentTime="2017-03-01", rate=3, commen
         <div className='comment-item-container'>
             <div className='avatar-container'>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <Avatar src='http://i1.kym-cdn.com/entries/icons/facebook/000/007/217/Potatoe.jpg'/>
+                    <Avatar src='http://img0.pconline.com.cn/pconline/1408/11/5254676_1407293-3_thumb.jpg'/>
                 </MuiThemeProvider>
             </div>
             <div className='comment-container'>
@@ -24,9 +24,9 @@ const CommentItem =({userName="wangye", commentTime="2017-03-01", rate=3, commen
                         <p className='rate'>{rate}</p>
                     </div>
                 </div>
-                <div className='comment-body-container'>
+                {/*<div className='comment-body-container'>
                     <p className='comment-body'>{comment}</p>
-                </div>
+                </div>*/}
             </div>
         </div>
     )
