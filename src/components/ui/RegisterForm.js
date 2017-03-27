@@ -6,13 +6,14 @@ const RegisterForm = () => {
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
             <Paper zDepth={3}>
+                <form action='submit' className='register-form'></form>
+                <TextField hintText="User Name" underlineShow={false} />
+                <Divider />
                 <TextField hintText="Email Address" underlineShow={false} />
                 <Divider />
-                <TextField hintText="Middle name" underlineShow={false} />
+                <TextField hintText="Password" underlineShow={false} type='password' />
                 <Divider />
-                <TextField hintText="Last name" underlineShow={false} />
-                <Divider />
-                <TextField hintText="Email address" underlineShow={false} />
+                <TextField hintText="Confirm Password" underlineShow={false} type='password' />
                 <Divider />
             </Paper>
         </MuiThemeProvider>
