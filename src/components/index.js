@@ -8,6 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
 import Search from './ui/Search'
 import GameListDetail from './ui/GameListDetail'
+import GameDetail from './ui/GameDetail'
 import TextField from 'material-ui/TextField'
 import ExpandingSearchButton from './ui/ExpandingSearchButton'
 
@@ -21,7 +22,6 @@ export const App = (
             <div className='navigator'>
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <AppBar title="Game Rating">
-                        {/*<TextField hintText="User Name" underlineShow={false} />*/}
                         <ExpandingSearchButton/>
                     </AppBar>
                 </MuiThemeProvider>    
@@ -31,6 +31,7 @@ export const App = (
                 <Route exact={true} path="/" component={Home} />
                 <Route path="/search/:searchText" component={Search}/>
                 <Route path="/gamelist/:listId" component={GameListDetail}/>
+                <Route path="/game/:gameId" component={GameDetail}/>
                 <Route path="/test" component={Test} />
                 <Route component={NoMatch} />
             </Switch>

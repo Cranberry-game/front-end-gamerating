@@ -3,7 +3,6 @@
     "react": "registry:dt/react#15.0.0+20170321201724"
   },
   "globalDependencies": {
-    "bootstrap": "registry:dt/bootstrap#3.3.5+20160726204056",
     "isomorphic-fetch": "registry:dt/isomorphic-fetch#0.0.0+20170223183302",
     "material-ui": "registry:dt/material-ui#0.16.0+20170323194905",
     "react-router-dom": "registry:dt/react-router-dom#4.0.0+20170323201651",

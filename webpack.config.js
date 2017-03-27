@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 module.exports = {
     devtool: 'source-map',
-    entry: './src/index.js',
+    entry: ['bootstrap-loader','./src/index.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -12,7 +12,7 @@ module.exports = {
     devServer: {
         inline: true,
         contentBase: path.resolve(__dirname, 'dist'),
-        port: 3000
+        port: 8000
     },
     module: {
         rules: [
@@ -39,7 +39,12 @@ module.exports = {
             {
                 test: /\.scss/,
                 loader: 'style-loader!css-loader!postcss-loader!sass-loader'
-            }
+            },
+            { test: /\.woff2?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+            { test: /\.ttf$/,  loader: "url-loader?limit=10000&mimetype=application/octet-stream" },
+            { test: /\.eot$/,  loader: "file-loader" },
+            { test: /\.svg$/,  loader: "url-loader?limit=10000&mimetype=image/svg+xml" },
+            { test:/bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports-loader?jQuery=jquery' }
         ]
     }
 }
