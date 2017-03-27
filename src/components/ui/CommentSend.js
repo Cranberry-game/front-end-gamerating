@@ -2,6 +2,7 @@ import { Rating } from 'material-ui-rating'
 import muiTheme from '../MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Avatar from 'material-ui/Avatar'
+import '../../css/components/CommentSend.scss'
 
 const CommentSend = () => {
     return (
@@ -11,7 +12,7 @@ const CommentSend = () => {
             </MuiThemeProvider>
             <div className='user-face'>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <Avatar src='http://i1.kym-cdn.com/entries/icons/facebook/000/007/217/Potatoe.jpg'/>
+                    <Avatar src='http://img.bitscn.com/upimg/allimg/c160120/1453262K6421Z-12X00.jpg'/>
                 </MuiThemeProvider>
             </div>
             <div className='textarea-container'>
