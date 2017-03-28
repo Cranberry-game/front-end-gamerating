@@ -1,5 +1,19 @@
+@import '../style';
+
 .no-match {
-	font-size: 20px;
-	color:#780;
-	text-align:center;
+	position: relative;
+	text-align: center;
+
+	.no-match-header {
+		font-size: 20px;
+		color:#780;
+		height: 200px;
+		line-height: 200px;
+	}
+
+	.no-match-desc {
+		font-size: 20px;
+		color:#780;
+	}
+	
 }

@@ -1,0 +1,106 @@
+@import '../style';
+
+// .gamelistitem-container {
+//     // height: 170px;
+//     position: relative;
+
+//     .gamelistitem-img-container {
+//         // float: left;
+//         width: 21%;
+//         // margin: 10px 2%;
+//         // background: black;
+        
+//         // padding-bottom: 33.98%;
+//         // width: 45px;
+//         overflow: hidden;
+//         // height: 150px;
+//         // line-height: 150px;
+//         max-height: 150px;
+
+//         img {width: 100%; height: auto;max-width: 100%; display: block; 
+//             // width:50%;
+//             // height: auto 50%;
+//             // max-height: 90px;
+//         // width: 45px;
+//         }
+//     }
+
+//     .gamelistitem-img-header-container {
+//         // float: left;
+//         // left: 25%;
+//         // height: 45px;
+//         // width: 25%;
+//         .gamelistitem-img-title {
+
+//         }
+
+//         .gamelistitem-img-desc {
+
+//         }
+//     }
+// }
+
+
+.gamelistitem-container {
+
+    .gamelistitem-img-container {
+        float: left;
+        margin: 24px 0 0 5px;
+        position: relative;
+        width: 70%; height: auto;max-height: 170px; 
+        overflow: hidden;
+
+        img {width: 100%; height: auto;max-width: 100%; display: block; }
+
+    }
+
+    .no-border {
+        border-top: none;
+    }
+
+    .gamelistitem-img-header-container {
+        // float: right;
+        margin: 24px 0 0 5px;
+        position: relative;
+        width: 20%;
+        margin-left: 85px;
+        padding: 22px 0 14px;
+    
+        .gamelistitem-img-title {
+                font-size: 12px;
+                font-weight: 700;
+                line-height: 18px;
+                padding-bottom: 4px;
+                display: block;
+                word-wrap: break-word;
+
+            // .comment-info-container {
+
+            //     .user-name{
+            //         color: #6d757a;
+            //     }
+            // }
+        }
+        .gamelistitem-img-desc {
+            p {
+                line-height: 20px;
+                padding: 2px 0;
+                font-size: 18px;
+                text-shadow: none;
+                overflow: hidden;
+                word-wrap: break-word;
+            }
+        }
+
+        // .info {
+        //     .comment-time {
+        //         line-height: 20px;
+        //         padding: 2px 0;
+        //         font-size: 12px;
+        //         text-shadow: none;
+        //         overflow: hidden;
+        //         word-wrap: break-word;
+        //     }
+        // }
+    }
+}
