@@ -8,10 +8,15 @@
     .home-page-title-container {
 
         .home-page-title {
+            
             height: 300px;
             line-height: 300px;
             font-size: 6em;
-            // overflow: hidden;
+            // p {
+            //     width: 100%; height: auto;max-width: 100%; display: block;
+            //     overflow: hidden;
+            // }
+            
         }
     }
 
@@ -19,5 +24,8 @@
         position: relative;
         top: -50px;
 
+        .home-page-search-bar {
+            line-height: 200% !important ; 
+        }
     }
 }
