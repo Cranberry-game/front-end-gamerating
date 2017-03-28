@@ -1,15 +1,15 @@
-import { FETCH_REVIEWS_REQUEST, CANCEL_FETCHING_REVIEWS, FETCH_REVIEWS_SUCCESS, FETCH_REVIEWS_FAILED } from '../../constants'
+import C from '../constants'
 import { combineReducers } from 'redux'
 
 const isFetching = (state=false, action) => {
     switch (action.type) {
-        case FETCH_REVIEWS_REQUEST:
+        case C.FETCH_REVIEWS_REQUEST:
             return true
-        case CANCEL_FETCHING_REVIEWS:
+        case C.CANCEL_FETCHING_REVIEWS:
             return false
-        case FETCH_REVIEWS_SUCCESS:
+        case C.FETCH_REVIEWS_SUCCESS:
             return false
-        case FETCH_REVIEWS_FAILED:
+        case C.FETCH_REVIEWS_FAILED:
             return false
         default:
             return state
@@ -18,7 +18,7 @@ const isFetching = (state=false, action) => {
 
 const reviews = (state=[], action) => {
     switch (action.type) {
-        case FETCH_REVIEWS_SUCCESS:
+        case C.FETCH_REVIEWS_SUCCESS:
             return action.type
         default:
             return state

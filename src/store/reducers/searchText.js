@@ -1,8 +1,8 @@
-import { UPDATE_SEARCH_TEXT } from '../../constants'
+import C from '../constants'
 
 const searchText = (state="", action) => {
     switch (action.type) {
-    case UPDATE_SEARCH_TEXT:
+    case C.UPDATE_SEARCH_TEXT:
         return action.payload.searchText
     default:
         return state
