@@ -1,4 +1,6 @@
 {
+    // this one is for auth
+
     "currentUser": {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdmF0YXIiOiJ1cmw6Ly90ZXN0IiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20iLCJpYXQiOjE0OTA2NTA5ODJ9._dfXz-Ui_r2QwH1iG1KGgA84Lam55AYB7v02p49Dfno",
         "userName": null,
@@ -8,6 +10,9 @@
         "isAuthenticating": false,
         "statusText": "lalala"
     },
+
+    // this one is for search
+    
     "allGameLists": {
         "isFetching": false,
         "gameLists": [
@@ -17,11 +22,67 @@
                 "updateTimeStamp": 1490033552,
                 "name": "Best RPGs",
                 "img": "https://pbs.twimg.com/media/Cn4klgrXEAA7OZC.jpg",
-                "creator": 1,
-                "gameIds": [1]
+                "creator": {
+                    "id": 1,
+                    "userName": "wangye",
+                    "email": "wangye@gmail.com",
+                    "avatar": "http://img.bitscn.com/upimg/allimg/c160120/1453262K454E0-33030.jpg"
+                }
+            },
+            {
+                "id": 1,
+                "createTimeStamp": 1490033552,
+                "updateTimeStamp": 1490033552,
+                "name": "Best RPGs",
+                "img": "https://pbs.twimg.com/media/Cn4klgrXEAA7OZC.jpg",
+                "creator": {
+                    "id": 1,
+                    "userName": "wangye",
+                    "email": "wangye@gmail.com",
+                    "avatar": "http://img.bitscn.com/upimg/allimg/c160120/1453262K454E0-33030.jpg"
+                }
             }
         ]
     },
+
+    // this one is for gamelist detail page
+
+    "currentGameList": {
+        "isFetching": false,
+        "isPosting": false,
+        "id": 1,
+        "createTimeStamp": 1490033552,
+        "updateTimeStamp": 1490033552,
+        "name": "Best RPGs",
+        "img": "https://pbs.twimg.com/media/Cn4klgrXEAA7OZC.jpg",
+        "creator": {
+            "id": 1,
+            "userName": "wangye",
+            "email": "wangye@gmail.com",
+            "avatar": "http://img.bitscn.com/upimg/allimg/c160120/1453262K454E0-33030.jpg"
+        },
+        "games": [
+            {
+                "id": 1,
+                "createTimeStamp": 1490033552,
+                "updateTimeStamp": 1490033552,
+                "title": "Witcher",
+                "platform": ["Xbox", "PS4"],
+                "totalRating": 4.0
+            },
+            {
+                "id": 1,
+                "createTimeStamp": 1490033552,
+                "updateTimeStamp": 1490033552,
+                "title": "Witcher",
+                "platform": ["Xbox", "PS4"],
+                "totalRating": 4.0
+            }
+        ]
+    },
+
+    // this one is for search
+
     "allGames": {
         "isFetching": false,
         "games": [
@@ -38,34 +99,63 @@
                 "releaseCompany": "EA",
                 "releaseDate": "2016-06-07",
                 "tag": ["la", "ba", "ha"]
-            }
-        ]
-    },
-    "allUsers": {
-        "isFetching": false,
-        "users": [
+            },
             {
                 "id": 1,
-                "email": "fuckyou@gmail.com",
-                "password": "12345",
-                "admin": true,
-                "isVerified": true,
-                "name": "wangye",
-                "avatar": "https://pbs.twimg.com/media/Cn4klgrXEAA7OZC.jpg",
-                "age": 100,
-                "address": "boston",
-                "sex": "female",
-                "mobile": "12222222222222"
+                "createTimeStamp": 1490033552,
+                "updateTimeStamp": 1490033552,
+                "title": "Witcher",
+                "platform": ["Xbox", "PS4"],
+                "gameType": "RPG",
+                "studio": "red",
+                "price": 12,
+                "totalRating": 4.0,
+                "releaseCompany": "EA",
+                "releaseDate": "2016-06-07",
+                "tag": ["la", "ba", "ha"]
             }
         ]
-        
     },
-    "allReviews": {
+
+    // this one is for game detail page
+
+    "currentGame": {
         "isFetching": false,
+        "isPosting": false,
+        "id": 1,
+        "createTimeStamp": 1490033552,
+        "updateTimeStamp": 1490033552,
+        "title": "Witcher",
+        "platform": ["Xbox", "PS4"],
+        "gameType": "RPG",
+        "studio": "red",
+        "price": 12,
+        "totalRating": 4.0,
+        "releaseCompany": "EA",
+        "releaseDate": "2016-06-07",
+        "tag": ["la", "ba", "ha"],
         "reviews": [
             {
                 "id": 1,
-                "uesrId": 1,
+                "creator": {
+                    "id": 1,
+                    "userName": "wangye",
+                    "email": "wangye@gmail.com",
+                    "avatar": "http://img.bitscn.com/upimg/allimg/c160120/1453262K454E0-33030.jpg"
+                },
+                "createTimeStamp": 1490033552,
+                "updateTimeStamp": 1490033552,
+                "rating": 4.0,
+                "content": "lalalalalalalala"
+            },
+            {
+                "id": 1,
+                "creator": {
+                    "id": 1,
+                    "userName": "wangye",
+                    "email": "wangye@gmail.com",
+                    "avatar": "http://img.bitscn.com/upimg/allimg/c160120/1453262K454E0-33030.jpg"
+                },
                 "createTimeStamp": 1490033552,
                 "updateTimeStamp": 1490033552,
                 "rating": 4.0,
@@ -73,10 +163,50 @@
             }
         ]
     },
+
+
+    // "allUsers": {
+    //     "isFetching": false,
+    //     "users": [
+    //         {
+    //             "id": 1,
+    //             "email": "fuckyou@gmail.com",
+    //             "password": "12345",
+    //             "admin": true,
+    //             "isVerified": true,
+    //             "name": "wangye",
+    //             "avatar": "https://pbs.twimg.com/media/Cn4klgrXEAA7OZC.jpg",
+    //             "age": 100,
+    //             "address": "boston",
+    //             "sex": "female",
+    //             "mobile": "12222222222222"
+    //         }
+    //     ]
+        
+    // },
+
+
+    // "allReviews": {
+    //     "isFetching": false,
+    //     "reviews": [
+    //         {
+    //             "id": 1,
+    //             "uesrId": 1,
+    //             "createTimeStamp": 1490033552,
+    //             "updateTimeStamp": 1490033552,
+    //             "rating": 4.0,
+    //             "content": "lalalalalalalala"
+    //         }
+    //     ]
+    // },
+
+
     "suggestions": {
         "isFetching": false,
         "gameNames": ["RE6"]
     },
+
+
     "searchText": "",
     "isLoginFormOpen": false,
     "isRegisterFormOpen": false

@@ -2,11 +2,10 @@ import C from '../constants'
 import { combineReducers } from 'redux'
 import currentUser from './currentUser'
 import allGameLists from './allGameLists'
+import currentGameList from './currentGameList'
 import allGames from './allGames'
-import allUsers from './allUsers'
-import allReviews from './allReviews'
+import currentGame from './currentGame'
 import suggestions from './suggestions'
-import searchText from './searchText'
  
 const isLoginFormOpen = (state=false, action) => {
     switch (action.type) {
@@ -30,12 +29,21 @@ const isRegisterFormOpen = (state=false, action) => {
     }
 } 
 
+const searchText = (state="", action) => {
+    switch (action.type) {
+    case C.UPDATE_SEARCH_TEXT:
+        return action.payload.searchText
+    default:
+        return state
+    }
+}
+
 export default combineReducers({
     currentUser,
     allGameLists,
+    currentGameList,
     allGames,
-    allUsers,
-    allReviews,
+    currentGame,
     suggestions,
     searchText,
     isLoginFormOpen,
