@@ -1,17 +1,17 @@
-import C from '../constants'
+import C from './constants'
 
-export const openLoginForm = () => ({
-    type: C.OPEN_LOGIN_FORM
+export const openLogin = () => ({
+    type: "OPEN_LOGIN_FORM"
 })
 
-export const closeLoginForm = () => ({
+export const closeLogin = () => ({
     type: C.CLOSE_LOGIN_FORM
 })
 
-export const openRegisterForm = () => ({
+export const openRegister = () => ({
     type: C.OPEN_REGISTER_FORM
 })
 
-export const closeRegisterForm = () => ({
+export const closeRegister = () => ({
     type: C.CLOSE_REGISTER_FORM
 })

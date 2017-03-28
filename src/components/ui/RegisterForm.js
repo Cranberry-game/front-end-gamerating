@@ -5,9 +5,9 @@ import Dialog from 'material-ui/Dialog'
 import Divider from 'material-ui/Divider'
 import TextField from 'material-ui/TextField'
 
-const RegisterForm = () => {
+const RegisterForm = ({ isRegisterFormOpen, closeRegisterForm }) => {
 
-    let _userName, _email, _password, _age, _address
+    let _userName = '', _email = '', _password = '', _age = '', _address = ''
 
     const handleRegister = e => {
         e.preventDefault()
@@ -18,13 +18,22 @@ const RegisterForm = () => {
         console.log(_address)
     }
 
+    const handleClose = () => {
+        closeRegisterForm()
+        _userName = ''
+        _email = ''
+        _password = ''
+        _age = ''
+        _address = ''
+    }
+
     const actions = [
         <RaisedButton label='Register' fullWidth={true} onTouchTap={handleRegister}/>
     ]
 
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
-            <Dialog title='Register' actions={actions} open={true}>
+            <Dialog title='Register' actions={actions} open={isRegisterFormOpen} modal={false} onRequestClose={handleClose}>
                 <form className='register-form'></form>
                 <TextField hintText="User Name" underlineShow={false} onChange={(e, input) => _userName = input}/>
                 <Divider />

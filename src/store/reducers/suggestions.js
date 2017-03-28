@@ -1,13 +1,13 @@
-import { FETCH_SEARCH_SUGGESTIONS_REQUEST, FETCH_SEARCH_SUGGESTIONS_SUCCESS, FETCH_SEARCH_SUGGESTIONS_FAILED } from '../../constants'
+import C from '../constants'
 import { combineReducers } from 'redux'
 
 const isFetching = (state=false, action) => {
     switch (action.type) {
-        case FETCH_SEARCH_SUGGESTIONS_REQUEST:
+        case C.FETCH_SEARCH_SUGGESTIONS_REQUEST:
             return true
-        case FETCH_SEARCH_SUGGESTIONS_SUCCESS:
+        case C.FETCH_SEARCH_SUGGESTIONS_SUCCESS:
             return false
-        case FETCH_SEARCH_SUGGESTIONS_FAILED:
+        case C.FETCH_SEARCH_SUGGESTIONS_FAILED:
             return false
         default:
             return state
@@ -16,7 +16,7 @@ const isFetching = (state=false, action) => {
 
 const gameNames = (state=[], action) => {
     switch(action.type) {
-        case FETCH_SEARCH_SUGGESTIONS_SUCCESS:
+        case C.FETCH_SEARCH_SUGGESTIONS_SUCCESS:
             return action.payload
         default:
             return state
