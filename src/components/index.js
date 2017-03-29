@@ -16,6 +16,7 @@ import LoginForm from './ui/LoginForm'
 import RegisterForm from './ui/RegisterForm'
 import { connect } from 'react-redux'
 import { openLogin, closeLogin, openRegister, closeRegister } from '../store/actions'
+import '../css/components/index.scss'
 
 const NoMatch = ({ location }) => (
     <div className="no-match">

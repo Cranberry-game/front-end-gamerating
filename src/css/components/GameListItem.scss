@@ -1,106 +1,132 @@
 @import '../style';
 
-// .gamelistitem-container {
-//     // height: 170px;
-//     position: relative;
-
-//     .gamelistitem-img-container {
-//         // float: left;
-//         width: 21%;
-//         // margin: 10px 2%;
-//         // background: black;
-        
-//         // padding-bottom: 33.98%;
-//         // width: 45px;
-//         overflow: hidden;
-//         // height: 150px;
-//         // line-height: 150px;
-//         max-height: 150px;
-
-//         img {width: 100%; height: auto;max-width: 100%; display: block; 
-//             // width:50%;
-//             // height: auto 50%;
-//             // max-height: 90px;
-//         // width: 45px;
-//         }
-//     }
-
-//     .gamelistitem-img-header-container {
-//         // float: left;
-//         // left: 25%;
-//         // height: 45px;
-//         // width: 25%;
-//         .gamelistitem-img-title {
-
-//         }
-
-//         .gamelistitem-img-desc {
-
-//         }
-//     }
-// }
-
-
 .gamelistitem-container {
+    background: white;
+    position: relative;
 
     .gamelistitem-img-container {
-        float: left;
-        margin: 24px 0 0 5px;
+
+// background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .6)), url($image);
+//     background-repeat: no-repeat;
+//     background-position: $bgPos;
+//     background-size: cover;
+//     height: $height;
+
+        // display: inline-block;
+        // float: left;
         position: relative;
-        width: 70%; height: auto;max-height: 170px; 
+        margin-left: 2%;
+        width: 70%;
+        
+        // min-width: 20%;
+        // margin: 10px 2%;
+        // background: black;
+        
+        // padding-bottom: 33.98%;
+        // width: 45px;
         overflow: hidden;
+        // height: 150px;
+        // line-height: 150px;
+        max-height: 250px;
 
-        img {width: 100%; height: auto;max-width: 100%; display: block; }
+        // height: 60px;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
 
+        img {
+            width: 100%; height: auto;max-width: 100%; display: block; 
+            position: relative;
+            top: -50%;
+            // width:50%;
+            // height: auto 50%;
+            // max-height: 90px;
+        // width: 45px;
+        }
     }
-
-    .no-border {
-        border-top: none;
+    .gamelistitem-img-cover {
+        display: inline-block;
+        width: 2px;
     }
 
     .gamelistitem-img-header-container {
-        // float: right;
-        margin: 24px 0 0 5px;
-        position: relative;
-        width: 20%;
-        margin-left: 85px;
-        padding: 22px 0 14px;
-    
+        // display: inline-block;
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        
+        // float: left;
+        // left: 25%;
+        // height: 45px;
+        // width: 25%;
         .gamelistitem-img-title {
-                font-size: 12px;
-                font-weight: 700;
-                line-height: 18px;
-                padding-bottom: 4px;
-                display: block;
-                word-wrap: break-word;
 
-            // .comment-info-container {
-
-            //     .user-name{
-            //         color: #6d757a;
-            //     }
-            // }
         }
+
         .gamelistitem-img-desc {
-            p {
-                line-height: 20px;
-                padding: 2px 0;
-                font-size: 18px;
-                text-shadow: none;
-                overflow: hidden;
-                word-wrap: break-word;
-            }
-        }
 
-        // .info {
-        //     .comment-time {
-        //         line-height: 20px;
-        //         padding: 2px 0;
-        //         font-size: 12px;
-        //         text-shadow: none;
-        //         overflow: hidden;
-        //         word-wrap: break-word;
-        //     }
-        // }
+        }
     }
 }
+
+
+// .gamelistitem-container {
+    
+//     .gamelistitem-img-container {
+//         // display: inline-block;
+//         // clear: right;
+//         float: left;
+//         margin: 24px 0 0 5px;
+//         position: relative;
+//         width: 20%; height: auto;max-height: 170px; 
+//         overflow: hidden;
+        
+
+//         img {
+//             width: 100%; 
+//             height: auto;
+//             max-width: 100%; 
+//             // display: block; 
+            
+//             }
+
+//     }
+//     .gamelistitem-img-cover {
+//         display: inline-block;
+//         border-top: none;
+//         width: 1px;
+//     }
+
+//     .gamelistitem-img-header-container {
+//         // display: inline-block;
+        
+//         margin: 24px 0 0 5px;
+//         position: relative;
+//         width: 40%;
+//         margin-left: 25%;
+//         padding: 22px 0 14px;
+    
+//         .gamelistitem-img-title {
+//                 font-size: 12px;
+//                 font-weight: 700;
+//                 line-height: 18px;
+//                 padding-bottom: 4px;
+//                 // display: block;
+//                 word-wrap: break-word;
+
+//         }
+//         .gamelistitem-img-desc {
+//             p {
+//                 line-height: 20px;
+//                 padding: 2px 0;
+//                 font-size: 18px;
+//                 text-shadow: none;
+//                 overflow: hidden;
+//                 word-wrap: break-word;
+//             }
+//         }
+//     }
+// }

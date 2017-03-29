@@ -4,7 +4,7 @@ const GameListItem = () => {
     return (
         <div className='gamelistitem-container'>
             <div className='gamelistitem-img-container'>
-                <img src='http://p8.qhimg.com/t01c6644a5ce5c955a5.jpg' alt='gamecover' />
+                <img src='http://p7.qhimg.com/t014033e9e74792bdec.jpg' alt='gamecover' />
             </div>
             <div className='gamelistitem-img-cover'></div>
             <div className='gamelistitem-img-header-container'>

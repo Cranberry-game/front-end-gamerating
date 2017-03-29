@@ -1,18 +1,23 @@
 @import '../style';
 
+// body {
+// 	background-color: black ; 
+// }
+
 .no-match {
+	height: 100%;
 	position: relative;
 	text-align: center;
-
+	
 	.no-match-header {
-		font-size: 20px;
+		font-size: 4em;
 		color:#780;
-		height: 200px;
-		line-height: 200px;
+		// height: 3em;
+		// line-height: 3em;
 	}
 
 	.no-match-desc {
-		font-size: 20px;
+		font-size: 2em;
 		color:#780;
 	}
 	

@@ -1,17 +1,39 @@
 @import '../style';
 
+body {
+        background-image: url(http://img13.deviantart.net/9b3f/i/2015/288/3/1/aeolian_by_wlop-d9ctyhy.jpg)  ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    // background-size: 100%, 500%;
+    height: 100%;
+
+
 .home-page-container {
     position: relative;
     text-align: center;
     // height: 500px;
 
+    
+    
     .home-page-title-container {
+        
+        height: 400px;
+        
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
 
         .home-page-title {
-            
-            height: 300px;
-            line-height: 300px;
+            // min-width: 700px;
+            // height: 300px;
+            // line-height: 300px;
             font-size: 6em;
+            color: white;
             // p {
             //     width: 100%; height: auto;max-width: 100%; display: block;
             //     overflow: hidden;
@@ -28,4 +50,5 @@
             line-height: 200% !important ; 
         }
     }
+}
 }
