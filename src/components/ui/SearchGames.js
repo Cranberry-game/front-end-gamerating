@@ -50,15 +50,15 @@ const tilesData = [
   },
 ];
 
-const SearchGames = () => {
+const SearchGames = ({ games=[] }) => {
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
             <LinearProgress mode="indeterminate"/>
         </MuiThemeProvider>,
         <h1>SearchGames</h1>,
         <div>
-            {tilesData.map((temp, i) => 
-                <SearchGameItems key={i}/>
+            {games.map((game, i) => 
+                <SearchGameItems key={game.id} gameTitle={game.title}/>
             )}
         </div>
     )

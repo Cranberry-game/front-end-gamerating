@@ -46,7 +46,7 @@ import SearchGames from './SearchGames'
     }
 }*/
 
-const Search = () => {
+const Search = ({ games=[]}) => {
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
             <Tabs>
@@ -54,7 +54,7 @@ const Search = () => {
                     <SearchGameLists/>
                 </Tab>
                 <Tab label="Games">
-                    <SearchGames/>
+                    <SearchGames games={games}/>
                 </Tab>
             </Tabs>
         </MuiThemeProvider>
