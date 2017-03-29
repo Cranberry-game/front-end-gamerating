@@ -47,7 +47,7 @@ const token = (state="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdmF0YXIiOiJ1cmw6L
 const userName = (state="", action) => {
     switch (action.type) {
         case C.LOGIN_USER_SUCCESS:
-            return jwtDecode(action.payload).userName
+            return jwtDecode(action.payload).username
         case C.LOGOUT_USER:
             return ""
         default:

@@ -206,8 +206,11 @@
         "gameNames": ["RE6"]
     },
 
+    "search": {
+        "isSearching": false,
+        "searchText": ""
+    },
 
-    "searchText": "",
     "isLoginFormOpen": false,
     "isRegisterFormOpen": false
 }

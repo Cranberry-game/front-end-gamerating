@@ -6,10 +6,17 @@ import RegisterForm from './RegisterForm'
 import LoginForm from './LoginForm'
 import '../../css/components/Home.scss';
 
-const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput}) => {
+const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput=f=>f, homeSearch=f=>f, history}) => {
 
     handleUpdateInput = value => {
-        console.log(value)
+        // console.log(value)
+    }
+
+
+    const onSearch = (chosenRequest) => {
+        console.log(chosenRequest)
+        homeSearch(chosenRequest)
+        history.replace('/search/1')
     }
 
     return (
@@ -19,7 +26,7 @@ const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput}) => {
             </div>
             <div className='search-bar-container'>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <AutoComplete hintText="Type the game you want to search" dataSource={dataSource} onUpdateInput={handleUpdateInput} className="home-page-search-bar"/>
+                    <AutoComplete hintText="Type the game you want to search" dataSource={dataSource} onUpdateInput={handleUpdateInput} className="home-page-search-bar" onNewRequest={onSearch}/>
                 </MuiThemeProvider>
             </div>
         </div>

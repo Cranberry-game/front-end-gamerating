@@ -6,12 +6,15 @@ import currentGameList from './currentGameList'
 import allGames from './allGames'
 import currentGame from './currentGame'
 import suggestions from './suggestions'
+import search from './search'
  
 const isLoginFormOpen = (state=false, action) => {
     switch (action.type) {
         case C.OPEN_LOGIN_FORM:
             return true
         case C.CLOSE_LOGIN_FORM:
+            return false
+        case C.LOGIN_USER_SUCCESS:
             return false
         default:
             return state
@@ -24,19 +27,12 @@ const isRegisterFormOpen = (state=false, action) => {
             return true
         case C.CLOSE_REGISTER_FORM:
             return false
+        case C.LOGIN_USER_SUCCESS:
+            return false
         default:
             return state
     }
 } 
-
-const searchText = (state="", action) => {
-    switch (action.type) {
-    case C.UPDATE_SEARCH_TEXT:
-        return action.payload.searchText
-    default:
-        return state
-    }
-}
 
 export default combineReducers({
     currentUser,
@@ -45,7 +41,7 @@ export default combineReducers({
     allGames,
     currentGame,
     suggestions,
-    searchText,
+    search,
     isLoginFormOpen,
     isRegisterFormOpen
 })
