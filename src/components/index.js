@@ -2,6 +2,7 @@ import '../css/style.scss'
 import { Component } from 'react'
 import Test from './ui/Test'
 import Home from './containers/Home'
+import ManageUser from './ui/ManageUser'
 import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import muiTheme from './MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -107,6 +108,7 @@ class App extends Component {
                         <Route path="/search" component={Search}/>
                         <Route path="/gamelist/:listId" component={GameListDetail}/>
                         <Route path="/game/:gameId" component={GameDetail}/>
+                        <Route path="/manageuser" component={ManageUser} />
                         <Route path="/test" component={Test} />
                         <Route component={NoMatch} />
                     </Switch>
