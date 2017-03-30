@@ -6,47 +6,16 @@ import { Tabs, Tab } from 'material-ui/Tabs'
 import SwipeableViews from 'react-swipeable-views'
 import SearchGameLists from './SearchGameLists'
 import SearchGames from './SearchGames'
+import queryString from 'query-string'
+import { search } from '../../store/actions'
 
-/*export default class Search extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            slideIndex: 0
-        }
-        this.handleSlide = this.handleSlide.bind(this)
-    }
 
-    handleSlide = value => {
-        this.setState({
-            slideIndex: value
-        })
-    }
+const Search = ({ games=[], searchGame=f=>f, location }) => {
 
-    render() {
-        return (
-            
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <div>
-                <Tabs onChange={this.handleSlide} value={this.state.slideIndex}>
-                    <Tab label="Game Lists" value={0}/>
-                    <Tab label="Games" value={1}/>
-                </Tabs>
-                <SwipeableViews index={this.state.slideIndex} onChangeIndex={this.handleSlide}>
-                    <div>
-                        <SearchGameLists/>
-                    </div>
-                    <div>
-                        <SearchGames/>
-                    </div>
-                </SwipeableViews>
-                </div>
-            </MuiThemeProvider>
-            
-        )
-    }
-}*/
+    const parsed = queryString.parse(location.search)
+    const searchName = parsed.name
+    console.log(searchName)
 
-const Search = ({ games=[]}) => {
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
             <Tabs>
@@ -54,10 +23,11 @@ const Search = ({ games=[]}) => {
                     <SearchGameLists/>
                 </Tab>
                 <Tab label="Games">
-                    <SearchGames games={games}/>
+                    <SearchGames games={games} searchName={searchName} searchGame={searchGame}/>
                 </Tab>
             </Tabs>
         </MuiThemeProvider>
     )
 }
+
 export default Search

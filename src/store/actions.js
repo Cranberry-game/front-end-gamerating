@@ -23,6 +23,18 @@ export const closeRegister = () => ({
     type: C.CLOSE_REGISTER_FORM
 })
 
+export const openSettingPopover = () => ({
+    type: C.OPEN_SETTING_POPOVER
+})
+
+export const closeSettingPopover = () => ({
+    type: C.OPEN_SETTING_POPOVER
+})
+
+export const logout = () => ({
+    type: C.LOGOUT_USER
+})
+
 export const login = (email, password) => dispatch => {
     dispatch({
         type: C.LOGIN_USER_REQUEST
@@ -57,9 +69,6 @@ export const login = (email, password) => dispatch => {
 }
 
 export const search = searchText => dispatch => {
-    const location = {
-        pathname: './search/1'
-    }
 
     dispatch({
         type: C.SEARCHING,
@@ -88,6 +97,31 @@ export const search = searchText => dispatch => {
         })
         console.log(JSON.stringify(res))
     })
+    .catch(err => console.error(err))
+}
+
+export const queryGameById = id => dispatch => {
+    dispatch({
+        type: C.FETCH_GAME_DETAILS_REQUEST
+    })
+
+
+    fetch(apiUrl + 'game?id=' + id, {
+        method: 'get',
+        headers: {
+            'auth': store.getState().currentUser.token
+        }
+    })
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        console.log(JSON.stringify(res))
+        dispatch({
+            type: C.FETCH_GAME_DETAILS_SUCCESS,
+            payload: res
+        })
+    })
+    .catch(err => console.error(err))
 }
 
 

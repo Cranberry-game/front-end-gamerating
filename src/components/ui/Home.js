@@ -15,8 +15,7 @@ const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput=f=>f, homeSe
 
     const onSearch = (chosenRequest) => {
         console.log(chosenRequest)
-        homeSearch(chosenRequest)
-        history.replace('/search/1')
+        history.push('/search?name='+chosenRequest)
     }
 
     return (

@@ -34,6 +34,20 @@ const isRegisterFormOpen = (state=false, action) => {
     }
 } 
 
+const isUserSettingPopoverOpen = (state=false, action) => {
+    switch (action.type) {
+        case C.OPEN_SETTING_POPOVER:
+            return true
+        case C.CLOSE_SETTING_POPOVER:
+            return false
+        case C.LOGOUT_USER:
+            return false
+        default:
+            return state
+    }
+} 
+
+
 export default combineReducers({
     currentUser,
     allGameLists,
@@ -43,5 +57,6 @@ export default combineReducers({
     suggestions,
     search,
     isLoginFormOpen,
-    isRegisterFormOpen
+    isRegisterFormOpen,
+    isUserSettingPopoverOpen
 })

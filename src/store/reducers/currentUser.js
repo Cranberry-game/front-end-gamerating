@@ -35,7 +35,7 @@ const statusText = (state="", action) => {
     }
 }
 
-const token = (state="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdmF0YXIiOiJ1cmw6Ly90ZXN0IiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20iLCJpYXQiOjE0OTA2NTA5ODJ9._dfXz-Ui_r2QwH1iG1KGgA84Lam55AYB7v02p49Dfno", action) => {
+const token = (state="", action) => {
     switch (action.type) {
         case C.LOGIN_USER_SUCCESS:
             return action.payload
