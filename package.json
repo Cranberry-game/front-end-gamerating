@@ -25,6 +25,7 @@
     "material-ui": "^0.17.1",
     "material-ui-chip-input": "^0.13.1",
     "material-ui-rating": "^1.1.0",
+    "query-string": "^4.3.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-motion": "^0.4.7",
@@ -38,7 +39,8 @@
     "redux-devtools-extension": "^2.13.0",
     "redux-logger": "^2.8.2",
     "redux-thunk": "^2.2.0",
-    "slick-carousel": "^1.6.0"
+    "slick-carousel": "^1.6.0",
+    "url-search-params-polyfill": "^1.1.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",

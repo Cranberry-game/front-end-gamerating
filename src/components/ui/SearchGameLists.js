@@ -55,7 +55,7 @@ const SearchGameLists = () => {
         <MuiThemeProvider muiTheme={muiTheme}>
             <LinearProgress mode="indeterminate"/>
         </MuiThemeProvider>,
-        <div>
+        <div className="search-gamelist-container">
             {tilesData.map((tile, i) => (
                 <SearchGameListItems key={i}/>
             ))}

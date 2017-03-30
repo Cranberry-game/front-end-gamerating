@@ -35,19 +35,19 @@ const id = (state=0, action) => {
             return state
     }
 }
-const createTimeStamp = (state=0, action) => {
+const createAt = (state=0, action) => {
     switch (action.type) {
         case C.FETCH_GAME_DETAILS_SUCCESS:
-            return action.payload.createTimeStamp
+            return action.payload.createdAt
         default:
             return state
     }
 }
 
-const updateTimeStamp = (state=0, action) => {
+const updateAt = (state="", action) => {
     switch (action.type) {
         case C.FETCH_GAME_DETAILS_SUCCESS:
-            return action.payload.updateTimeStamp
+            return action.payload.updatedAt
         default:
             return state
     }
@@ -101,7 +101,7 @@ const price = (state=0, action) => {
 const totalRating = (state=0, action) => {
     switch (action.type) {
         case C.FETCH_GAME_DETAILS_SUCCESS:
-            return action.payload.totalRating
+            return action.payload.totalRate
         default:
             return state
     }
@@ -152,16 +152,16 @@ export default combineReducers({
     isFetching,
     isPosting,
     id,
-    createTimeStamp,
-    updateTimeStamp,
+    createAt,
+    updateAt,
     title,
-    platform,
+    // platform,
     gameType,
     studio,
     price,
     totalRating,
     releaseCompany,
     releaseDate,
-    tag,
-    reviews
+    // tag,
+    // reviews
 })
