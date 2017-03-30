@@ -1,1 +1,16 @@
 @import "../style.scss";
+
+.search-gamelist-item-wrapper {
+    background-color: yellow;
+    width: 70%;
+    margin: 20px auto;
+    height: 200px;
+    overflow: hidden;
+
+        .search-gamelist-item-img-container {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            display: block;
+        }
+}

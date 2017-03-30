@@ -2,6 +2,7 @@ import muiTheme from '../MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import { Link } from 'react-router-dom'
+import '../../css/components/SearchGameListItems.scss'
 
 const SearchGameListItems = ({ gamelistId=0 }) => (
     <div className='search-gamelist-item-wrapper'>

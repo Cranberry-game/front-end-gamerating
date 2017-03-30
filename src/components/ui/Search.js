@@ -9,6 +9,7 @@ import SearchGames from './SearchGames'
 import '../../css/components/Search.scss'
 import queryString from 'query-string'
 import { search } from '../../store/actions'
+import '../../css/components/Search.scss'
 
 
 const Search = ({ games=[], searchGame=f=>f, location }) => {
