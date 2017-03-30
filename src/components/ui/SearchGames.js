@@ -26,7 +26,7 @@ class SearchGames extends Component {
                 <LinearProgress mode="indeterminate"/>
             </MuiThemeProvider>,
             <h1>SearchGames</h1>,
-            <div>
+            <div className="search-game-container">
                 {games.map((game, i) => 
                     <SearchGameItems key={game.id} gameTitle={game.title} gameId={game.id}/>
                 )}
