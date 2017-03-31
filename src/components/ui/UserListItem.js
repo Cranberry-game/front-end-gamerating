@@ -4,7 +4,28 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui/RaisedButton'
 import Toggle from 'material-ui/Toggle'
 
+
+
 const UserListItem = ({ userName="username", avatar="http://leuction.com/static/img/landing/leuction.jpeg", isAdmin=true, isVerified=true }) => {
+
+    const adminStyle = {
+        display: 'inline-block',
+        width: '10rem',
+        margin: '0 4rem'
+    }
+
+    const verifiedStyle = {
+        display: 'inline-block',
+        width: '10rem',
+        margin: '0 4rem'
+    }
+
+    const deleteStyle = {
+        display: 'inline-block',
+        width: '15rem',
+        float: 'right'
+    }
+
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
             <Card>
@@ -13,16 +34,18 @@ const UserListItem = ({ userName="username", avatar="http://leuction.com/static/
                     <Toggle
                         toggled={isAdmin}
                         onToggle={() => console.log("nothing")}
-                        labelPosition="right"
+                        labelPosition="left"
                         label="Admin"
+                        style={adminStyle}
                     />
                     <Toggle
                         toggled={isVerified}
                         onToggle={() => console.log("nothing")}
-                        labelPosition="right"
+                        labelPosition="left"
                         label="Verified"
+                        style={verifiedStyle}
                     />
-                    <RaisedButton label="delete" secondary={true} />
+                    <RaisedButton label="delete" secondary={true} style={deleteStyle} />
                 </CardText>
             </Card>
         </MuiThemeProvider>
