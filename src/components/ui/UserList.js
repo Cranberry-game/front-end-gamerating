@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import LinearProgress from 'material-ui/LinearProgress'
 import CircularProgress from 'material-ui/CircularProgress'
 import UserListItem from './UserListItem'
+import '../../css/components/UserList.scss'
 
 const tilesData = [
   {
