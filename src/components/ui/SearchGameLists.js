@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import LinearProgress from 'material-ui/LinearProgress'
 import CircularProgress from 'material-ui/CircularProgress'
 import SearchGameListItems from './SearchGameListItems'
+import '../../css/components/SearchGameLists.scss'
 
 const tilesData = [
   {

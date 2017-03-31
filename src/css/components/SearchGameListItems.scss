@@ -1,16 +1,14 @@
 @import "../style.scss";
 
 .search-gamelist-item-wrapper {
-    width: 70%;
-    margin: 20px auto;
-    height: 200px;
-    overflow: hidden;
+    margin: 50px auto;
 
-        .search-gamelist-item-img-container {
-     		height: 200px;
+    .search-gamelist-item-img-container {
+        height: 200px;
+        overflow: hidden;
         img {
             width: 100%;
             height: auto;
         }
-}
+    }
 }
