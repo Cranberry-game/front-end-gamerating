@@ -19,6 +19,7 @@ import ExpandingSearchButton from './ui/ExpandingSearchButton'
 import FlatButton from 'material-ui/FlatButton'
 import LoginForm from './ui/LoginForm'
 import RegisterForm from './ui/RegisterForm'
+import AddGameList from './containers/AddGameList'
 import { connect } from 'react-redux'
 import '../css/components/index.scss'
 import { openLogin, closeLogin, openRegister, closeRegister, openSettingPopover, closeSettingPopover, login, logout } from '../store/actions'
@@ -109,6 +110,7 @@ class App extends Component {
                         <Route path="/gamelist/:listId" component={GameListDetail}/>
                         <Route path="/game/:gameId" component={GameDetail}/>
                         <Route path="/manageuser" component={ManageUser} />
+                        <Route path="/addgamelist" component={AddGameList} />
                         <Route path="/test" component={Test} />
                         <Route component={NoMatch} />
                     </Switch>

@@ -7,6 +7,7 @@ import allGames from './allGames'
 import currentGame from './currentGame'
 import suggestions from './suggestions'
 import search from './search'
+import addGameList from './addGameList'
  
 const isLoginFormOpen = (state=false, action) => {
     switch (action.type) {
@@ -58,5 +59,6 @@ export default combineReducers({
     search,
     isLoginFormOpen,
     isRegisterFormOpen,
-    isUserSettingPopoverOpen
+    isUserSettingPopoverOpen,
+    addGameList
 })

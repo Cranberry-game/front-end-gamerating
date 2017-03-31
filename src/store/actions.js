@@ -125,6 +125,36 @@ export const queryGameById = id => dispatch => {
 }
 
 
+export const addGameListAction = ( name, userId, description, img, games ) => dispatch => {
+    dispatch({
+        type: C.FETCH_GAME_SUGGESTIONS_REQUEST
+    })
+    fetch(apiUrl + 'gamelist', {
+        method: 'post',
+        headers: {
+            'auth': store.getState().currentUser.token,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userId: userId,
+            gameId: games,
+            name: name,
+            img: "http://img1.joyreactor.cc/pics/post/full/Kemono-Friends-Anime-Serval-(Kemono-Friends)-Kaban-3710791.jpeg",
+            description: description,
+            totalRate: 5
+        })
+    })
+    .then(checkHttpStatus)
+    .then(() => {
+        dispatch({
+            type: C.FETCH_GAME_SUGGESTIONS_SUCCESS
+        })
+        console.log('create success')
+    })
+    
+    .catch(err => console.error(err))
+}
+
 const anyElementsEmpty = elements => {
     for (let element in elements) {
         if (!elements[element]) {

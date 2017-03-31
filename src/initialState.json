@@ -212,5 +212,23 @@
     },
 
     "isLoginFormOpen": false,
-    "isRegisterFormOpen": false
+    "isRegisterFormOpen": false,
+
+
+    "addGameList": {
+        "isFetchingSuggestion": false,
+        "isPosting": false,
+        "games": [
+            {
+                "id": 1,
+                "name": "Halo"
+            }
+        ],
+        "suggestions": [
+            {
+                "id": 1,
+                "name": "Halo"
+            }
+        ]
+    }
 }
