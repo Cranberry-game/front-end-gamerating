@@ -19,7 +19,11 @@ const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput=f=>f, homeSe
     }
 
     return (
+        
         <div className="home-page-container">
+            <div id="bg">
+                <img src="http://img13.deviantart.net/9b3f/i/2015/288/3/1/aeolian_by_wlop-d9ctyhy.jpg" />
+                </div>
             <div className='home-page-title-container'>
                 <h1 className="home-page-title"><strong>GAME RATING</strong></h1>
             </div>

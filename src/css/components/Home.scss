@@ -1,19 +1,32 @@
 @import '../style';
 
-body {
-        background-image: url(http://img13.deviantart.net/9b3f/i/2015/288/3/1/aeolian_by_wlop-d9ctyhy.jpg)  ;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    // background-size: 100%, 500%;
-    height: 100%;
+
+#bg {
+    position: fixed; 
+    top: -50%; 
+    left: -50%;
+    width: 200%; 
+    height: 200%;
+    z-index: -1;
+    img {
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        right: 0; 
+        bottom: 0; 
+        margin: auto; 
+        min-width: 50%;
+        min-height: 50%;
+    }
+}
+
 
 
 .home-page-container {
     position: relative;
     text-align: center;
     // height: 500px;
+
 
     
     
@@ -50,5 +63,4 @@ body {
             line-height: 200% !important ; 
         }
     }
-}
 }
