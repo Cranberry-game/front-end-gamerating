@@ -40,7 +40,8 @@
     "redux-logger": "^2.8.2",
     "redux-thunk": "^2.2.0",
     "slick-carousel": "^1.6.0",
-    "url-search-params-polyfill": "^1.1.0"
+    "url-search-params-polyfill": "^1.1.0",
+    "vidage": "^0.3.5"
   },
   "devDependencies": {
     "babel": "^6.23.0",
