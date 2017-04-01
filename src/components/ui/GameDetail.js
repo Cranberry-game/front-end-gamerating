@@ -13,6 +13,7 @@ import GameListShow from './GameListShow'
 import Comments from './Comments'
 import CommentSend from './CommentSend'
 import GameListList from './GameListList'
+import '../../css/components/GameDetail.scss';
 
 const arrays = [
     {
@@ -110,7 +111,7 @@ class GameDetail extends Component {
                             </div>
                         </MuiThemeProvider>
                     </div>
-                </div>
+      </div>          
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <div className='add-to-list-button-container'>
                         <RaisedButton onTouchTap={this.handleTouchAddToList} label="Add to Game List"/>

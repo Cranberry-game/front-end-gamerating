@@ -1,0 +1,35 @@
+@import "../style";
+
+.game-details-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .game-info {
+        display: inline-block;
+        width: 70%;
+        margin-left: 10%;
+        margin-top: 30px; 
+        p {
+            font-family: Georgia;
+            font-size: 3em;
+            font-weight: 900;
+        }
+
+        span {
+            font-family: Georgia;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .game-platform-container {
+            margin-top: 20px;
+        }
+        
+    }
+    .add-to-list-button-container {
+        position: relative;
+        margin-left: 70%;
+        top: -3em; 
+    }
+}
