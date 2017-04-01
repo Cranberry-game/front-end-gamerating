@@ -62,10 +62,19 @@ const title = (state="", action) => {
     }
 }
 
-const platform = (state=[], action) => {
+const description = (state="", action) => {
     switch (action.type) {
         case C.FETCH_GAME_DETAILS_SUCCESS:
-            return action.payload.platform
+            return action.payload.description
+        default:
+            return state
+    }
+}
+
+const platforms = (state=[], action) => {
+    switch (action.type) {
+        case C.FETCH_GAME_DETAILS_SUCCESS:
+            return action.payload.platforms
         default:
             return state
     }
@@ -140,9 +149,27 @@ const reviews = (state=[], action) => {
             return action.payload.reviews
         case C.ADD_GAME_REVIEW_SUCCESS:
             return [
-                ...state,
-                action.payload
+                action.payload,
+                ...state
             ]
+        default:
+            return state
+    }
+}
+
+const cover = (state="", action) => {
+    switch (action.type) {
+        case C.FETCH_GAME_DETAILS_SUCCESS:
+            return action.payload.cover
+        default:
+            return state
+    }
+}
+
+const screenshots = (state=[], action) => {
+    switch (action.type) {
+        case C.FETCH_GAME_DETAILS_SUCCESS:
+            return action.payload.screenshots
         default:
             return state
     }
@@ -155,7 +182,8 @@ export default combineReducers({
     createAt,
     updateAt,
     title,
-    // platform,
+    description,
+    platforms,
     gameType,
     studio,
     price,
@@ -163,5 +191,7 @@ export default combineReducers({
     releaseCompany,
     releaseDate,
     // tag,
-    // reviews
+    reviews,
+    cover,
+    screenshots
 })

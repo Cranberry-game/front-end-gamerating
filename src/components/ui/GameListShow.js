@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { GridList, GridTile } from 'material-ui/GridList'
 
 
-const GameListShow = () => {
+const GameListShow = ({ screenshots=[] }) => {
 
     const styles = {
         root: {
@@ -64,14 +64,15 @@ const GameListShow = () => {
         },
     ];
 
+    console.log(`the length of screenshots is ${screenshots.length}`)
 
     return (
         <div className='game-list-show-container'>
             <MuiThemeProvider muiTheme={muiTheme}>
                 <GridList style={styles.gridList} cols={2.2}>
-                    {tilesData.map((tile, i) => (
-                        <GridTile key={i} title={tile.title} titleStyle={styles.titleStyle} titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
-                            <img src="http://i1.kym-cdn.com/entries/icons/facebook/000/007/217/Potatoe.jpg" />
+                    {screenshots.map((screenshot, i) => (
+                        <GridTile key={i} title={"screenshots"} titleStyle={styles.titleStyle} titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)">
+                            <img src={screenshot.img} />
                         </GridTile>
                     ))}
                 </GridList>
