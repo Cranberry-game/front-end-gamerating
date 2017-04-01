@@ -4,6 +4,7 @@ import muiTheme from '../MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AutoComplete from 'material-ui/AutoComplete'
 import UserList from './UserList'
+import '../../css/components/ManageUser.scss'
 
 
 class ManageUser extends Component {
