@@ -1,0 +1,19 @@
+@import '../style';
+
+.add-game-list-wrapper {
+    margin-top: 30px;
+ 
+    .add-game-list-name-wrapper {
+        text-align: center;
+    }
+
+    .add-game-list-desc-wrapper {
+        margin-top:20px;
+        text-align: center;
+    }
+
+    .add-game-list-button-wrapper {
+        margin-top:50px;
+        text-align: center;
+    }
+}

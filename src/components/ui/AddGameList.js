@@ -2,6 +2,7 @@ import muiTheme from '../MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
+import '../../css/components/AddGameList.scss';
 
 const AddGameList = ({ addGameList=f=>f, _games=[] }) => {
 
