@@ -4,14 +4,14 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import { Link } from 'react-router-dom'
 import '../../css/components/SearchGameItems.scss'
 
-const SearchGameItems = ({ gameTitle="", gameId=0 }) => (
+const SearchGameItems = ({ gameTitle="", gameId=0, gameCover="", gameDesc="" }) => (
     <div className='search-game-item-wrapper'>
         <Link to={`/game/${gameId}`}>
             <MuiThemeProvider muiTheme={muiTheme}>
                 <Card>
-                    <CardMedia overlay={<CardTitle title={gameTitle} subtitle="Best Game"/>}>
+                    <CardMedia overlay={<CardTitle title={gameTitle} subtitle={gameDesc}/>}>
                         <div className='search-game-item-img-container'>
-                            <img src="https://i.ytimg.com/vi/xwVEfcKNThY/maxresdefault.jpg"/>
+                            <img src={gameCover}/>
                         </div>
                     </CardMedia>
                 </Card>
