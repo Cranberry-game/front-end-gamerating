@@ -24,8 +24,12 @@ const AddGameList = ({ addGameList=f=>f, _games=[] }) => {
                 <div className='add-game-list-name-wrapper'>
                 <TextField hintText="Game List Name" onChange={input => _name=input}/><br />
                 </div>
+                <div className="add-game-list-desc-wrapper">
                 <TextField hintText="Game List Description" onChange={input => _description=input}/><br />
+                </div>
+                <div className="add-game-list-button-wrapper">
                 <RaisedButton label="Add GameList" primary={true} onTouchTap={handleAddGameList}/>
+                </div>
             </div>
         </MuiThemeProvider>
     )

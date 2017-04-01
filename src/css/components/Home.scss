@@ -15,8 +15,19 @@
         right: 0; 
         bottom: 0; 
         margin: auto; 
-        min-width: 50%;
-        min-height: 50%;
+        min-width: 70%;
+        min-height: 70%;
+        z-index: 0;
+    }
+    iframe {
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        right: 0; 
+        bottom: 0; 
+        margin: auto; 
+        min-width: 70%;
+        min-height: 70%;
     }
 }
 
