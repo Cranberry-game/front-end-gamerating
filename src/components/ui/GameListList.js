@@ -1,4 +1,5 @@
 import GameListItem from './GameListItem'
+import '../../css/components/GameListList.scss'
 
 const GameListList = () => {
     
