@@ -30,7 +30,6 @@ class GameListItem extends Component {
         return(
             <div className='mouse-enter-or-out-wrapper' onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
                 <div className='gamelistitem-container'>
-                    
                         <div className="delete-game-button-container">
                         {(this.state.hover)?
                         <MuiThemeProvider muiTheme={muiTheme}>
@@ -42,7 +41,7 @@ class GameListItem extends Component {
                     </div>
 
                     <div className='gamelistitem-img-container'>
-                        <img src='http://p7.qhimg.com/t014033e9e74792bdec.jpg' alt='gamecover' />
+                        <img src='http://img05.tooopen.com/images/20160121/tooopen_sy_155168162826.jpg' alt='gamecover' />
                     </div>
                     <div className='gamelistitem-img-cover'></div>
                     <div className='gamelistitem-img-header-container'>

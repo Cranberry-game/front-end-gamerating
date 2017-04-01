@@ -1,49 +1,48 @@
 @import '../style';
 
 .mouse-enter-or-out-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     
     .gamelistitem-container {
         position: relative;
+        margin: 30px;
 
-            .delete-game-button-container {
+        .delete-game-button-container {
             position: absolute;
             pointer-events:none;
-            right: 12%;
-            top: -25px;
+            top: -30px;
+            left: -30px;
         }
 
         .gamelistitem-img-container {
-
             position: relative;
-            margin: 60px auto;
-            padding: 30px auto;
-            width: 70%;
             overflow: hidden;
-            max-height: 200px;
-
-            display: -webkit-flex;
-            display: flex;
-            -webkit-align-items: center;
-            align-items: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-
-            background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, .6));
-            
-            
-
+            height: 300px;
             img {
-                width: 100%; 
+                width: 100vh;
+                height: 100vw;
                 display: block; 
                 z-index: -1;
+                object-fit: cover;
             }
+        }
+        .gamelistitem-img-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
         }
     
 
         .gamelistitem-img-header-container {
             position: absolute;
             top: 30%;
-            left: 20%;
+            right: 20%;
             
 
             .gamelistitem-img-title {
