@@ -46,7 +46,20 @@ const isUserSettingPopoverOpen = (state=false, action) => {
         default:
             return state
     }
-} 
+}
+
+const isAddingAGame = (state=false, action) => {
+    switch (action.type) {
+        case C.ADD_GAME_REQUEST:
+            return true
+        case C.ADD_GAME_SUCCESS:
+            return false
+        case C.ADD_GAME_FAILED:
+            return false
+        default:
+            return state
+    }
+}
 
 
 export default combineReducers({
@@ -60,5 +73,6 @@ export default combineReducers({
     isLoginFormOpen,
     isRegisterFormOpen,
     isUserSettingPopoverOpen,
-    addGameList
+    addGameList,
+    isAddingAGame
 })

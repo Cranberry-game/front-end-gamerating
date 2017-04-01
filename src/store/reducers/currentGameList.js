@@ -38,7 +38,7 @@ const id = (state=0, action) => {
 const createTimeStamp = (state=0, action) => {
     switch (action.type) {
         case C.FETCH_GAMELIST_DETAILS_SUCCESS:
-            return action.payload.createTimeStamp
+            return action.payload.createTime
         default:
             return state
     }
@@ -47,7 +47,7 @@ const createTimeStamp = (state=0, action) => {
 const updateTimeStamp = (state=0, action) => {
     switch (action.type) {
         case C.FETCH_GAMELIST_DETAILS_SUCCESS:
-            return action.payload.updateTimeStamp
+            return action.payload.updateTime
         default:
             return state
     }
@@ -56,7 +56,7 @@ const updateTimeStamp = (state=0, action) => {
 const name = (state="", action) => {
     switch (action.type) {
         case C.FETCH_GAMELIST_DETAILS_SUCCESS:
-            return action.payload.name
+            return action.payload.gameListName
         default:
             return state
     }
@@ -89,6 +89,20 @@ const games = (state=[], action) => {
     }
 }
 
+const reviews = (state=[], action) => {
+    switch (action.type) {
+        case C.FETCH_GAMELIST_DETAILS_SUCCESS:
+            return action.payload.reviews
+        case C.ADD_GAMELIST_REVIEW_SUCCESS:
+            return [
+                action.payload,
+                ...state
+            ]
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     isFetching,
     isPosting,
@@ -96,7 +110,7 @@ export default combineReducers({
     createTimeStamp,
     updateTimeStamp,
     name,
-    img,
-    creator,
+    // img,
+    // creator,
     games
 })

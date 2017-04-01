@@ -12,13 +12,14 @@ import Popover from 'material-ui/Popover'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
 import Search from './containers/Search'
-import GameListDetail from './ui/GameListDetail'
+import GameListDetail from './containers/GameListDetail'
 import GameDetail from './containers/GameDetail'
 import TextField from 'material-ui/TextField'
 import ExpandingSearchButton from './ui/ExpandingSearchButton'
 import FlatButton from 'material-ui/FlatButton'
 import LoginForm from './ui/LoginForm'
 import RegisterForm from './ui/RegisterForm'
+import AddGame from './containers/AddGame'
 import AddGameList from './containers/AddGameList'
 import { connect } from 'react-redux'
 import '../css/components/index.scss'
@@ -111,6 +112,7 @@ class App extends Component {
                         <Route path="/game/:gameId" component={GameDetail}/>
                         <Route path="/manageuser" component={ManageUser} />
                         <Route path="/addgamelist" component={AddGameList} />
+                        <Route path="/addgame" component={AddGame} />
                         <Route path="/test" component={Test} />
                         <Route component={NoMatch} />
                     </Switch>

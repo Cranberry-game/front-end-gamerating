@@ -123,6 +123,29 @@ export const queryGameById = id => dispatch => {
     })
     .catch(err => console.error(err))
 }
+export const queryGameListByIdAction = id => dispatch => {
+    dispatch({
+        type: C.FETCH_GAMELIST_DETAILS_REQUEST
+    })
+
+
+    fetch(apiUrl + 'gamelist?id=' + id, {
+        method: 'get',
+        headers: {
+            'auth': store.getState().currentUser.token
+        }
+    })
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        console.log(JSON.stringify(res))
+        dispatch({
+            type: C.FETCH_GAMELIST_DETAILS_SUCCESS,
+            payload: res
+        })
+    })
+    .catch(err => console.error(err))
+}
 
 
 export const addGameListAction = ( name, userId, description, img, games ) => dispatch => {
@@ -189,6 +212,78 @@ export const addGameReviewAction = ( userId, rate, content, gameId ) => dispatch
             }
         })
     })
+    .catch(err => console.error(err))
+}
+export const addGameListReviewAction = ( userId, rate, content, gamelistId ) => dispatch => {
+    dispatch({
+        type: C.ADD_GAMELIST_REVIEW_REQUEST
+    })
+    fetch(apiUrl + 'glreview', {
+        method: 'post',
+        headers: {
+            auth: store.getState().currentUser.token,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userId: userId,
+            rate: rate,
+            content: content,
+            gamelistId: gamelistId
+        })
+    })
+    .then(checkHttpStatus)
+    .then(() => {
+        dispatch({
+            type: C.ADD_GAMELIST_REVIEW_SUCCESS,
+            payload: {
+                rate: rate,
+                content: content,
+                userId: userId,
+                creator: {
+                    id: store.getState().currentUser.id,
+                    name: store.getState().currentUser.userName,
+                    email: store.getState().currentUser.email,
+                    avatar: store.getState().currentUser.avatar
+                }
+            }
+        })
+    })
+    .catch(err => console.error(err))
+}
+
+export const addGameAction = ( title, gameType, price, releaseCompany, releaseDate, studio, platform, cover, description, screenshot ) => dispatch => {
+    dispatch({
+        type: C.ADD_GAME_REQUEST
+    })
+    fetch(apiUrl + 'game', {
+        method: 'post',
+        headers: {
+            'auth': store.getState().currentUser.token,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title: title,
+            gameType: gameType,
+            totalRate: 5,
+            price: price, 
+            releaseCompany: releaseCompany,
+            releaseDate: releaseDate,
+            studio: studio,
+            platform: platform,
+            cover: cover,
+            description: description,
+            screenshot: screenshot
+
+        })
+    })
+    .then(checkHttpStatus)
+    .then(() => {
+        dispatch({
+            type: C.ADD_GAME_SUCCESS
+        })
+        console.log('create success')
+    })
+    
     .catch(err => console.error(err))
 }
 
