@@ -16,3 +16,9 @@
         clear: both;
     }
 }
+
+@mixin font-with-var ($value1, $value2) {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Microsoft Yahei', sans-serif;
+    font-size: $value1;
+    font-weight: $value2;
+}
