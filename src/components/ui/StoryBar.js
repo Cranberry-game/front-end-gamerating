@@ -1,7 +1,7 @@
 import '../../css/components/StoryBar.scss'
 
 const StoryBar = ({imgSource="http://img.sc115.com/uploads1/sc/jpgs/1509/apic14886_sc115.com.jpg", imgDescription="header", title="title", description="description", time="2017-3-24"}) => {
-    
+
     return (
         <div className='story-header'>
             <div className='story-header-cover'></div>

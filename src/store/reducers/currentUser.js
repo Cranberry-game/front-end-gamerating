@@ -77,7 +77,43 @@ const email = (state="", action) => {
     }
 }
 
+const id = (state=0, action) => {
+    switch (action.type) {
+        case C.LOGIN_USER_SUCCESS:
+            return jwtDecode(action.payload).id
+        case C.LOGOUT_USER:
+            return 0
+        default:
+            return state
+    }
+}
+
+const isAdmin = (state=false, action) => {
+    switch (action.type) {
+        case C.LOGIN_USER_SUCCESS:
+            return jwtDecode(action.payload).isAdmin
+        case C.LOGOUT_USER:
+            return false
+        default:
+            return state
+    }
+}
+
+const isVerified = (state=false, action) => {
+    switch (action.type) {
+        case C.LOGIN_USER_SUCCESS:
+            return jwtDecode(action.payload).isVerified
+        case C.LOGOUT_USER:
+            return false
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
+    id,
+    isAdmin,
+    isVerified,
     token,
     userName,
     avatar,

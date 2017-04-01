@@ -50,7 +50,7 @@ export const login = (email, password) => dispatch => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            email: 'true@gmail.com',
+            email: 'user1@gmail.com',
             password: '123456'
         })
     })
@@ -152,6 +152,43 @@ export const addGameListAction = ( name, userId, description, img, games ) => di
         console.log('create success')
     })
     
+    .catch(err => console.error(err))
+}
+
+export const addGameReviewAction = ( userId, rate, content, gameId ) => dispatch => {
+    dispatch({
+        type: C.ADD_GAME_REVIEW_REQUEST
+    })
+    fetch(apiUrl + 'review', {
+        method: 'post',
+        headers: {
+            auth: store.getState().currentUser.token,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userId: userId,
+            rate: rate,
+            content: content,
+            gameId: gameId
+        })
+    })
+    .then(checkHttpStatus)
+    .then(() => {
+        dispatch({
+            type: C.ADD_GAME_REVIEW_SUCCESS,
+            payload: {
+                rate: rate,
+                content: content,
+                userId: userId,
+                creator: {
+                    id: store.getState().currentUser.id,
+                    name: store.getState().currentUser.userName,
+                    email: store.getState().currentUser.email,
+                    avatar: store.getState().currentUser.avatar
+                }
+            }
+        })
+    })
     .catch(err => console.error(err))
 }
 

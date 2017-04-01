@@ -29,7 +29,7 @@ class SearchGames extends Component {
             <h1>SearchGames</h1>,
             <div className="search-game-container">
                 {games.map((game, i) => 
-                    <SearchGameItems key={game.id} gameTitle={game.title} gameId={game.id}/>
+                    <SearchGameItems key={game.id} gameTitle={game.title} gameId={game.id} gameCover={game.cover} gameDesc={game.description}/>
                 )}
             </div>
         )
