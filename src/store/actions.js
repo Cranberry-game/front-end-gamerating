@@ -4,6 +4,7 @@ import { parseJSON, checkHttpStatus } from './utils'
 import jwtDecode from 'jwt-decode'
 import store from './index'
 import { history } from 'react-router-dom'
+import FormData from 'form-data'
 
 const apiUrl = 'http://gamerating.info/api/v1/'
 
@@ -410,6 +411,31 @@ export const addGameAction = ( title, gameType, price, releaseCompany, releaseDa
     })
     
     .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+
+export const uploadCoverAction = file => dispatch => {
+    console.log(JSON.stringify(file))
+    let form = new FormData()
+    form.append('files', file)
+    console.log(form)
+    fetch(apiUrl + 'upload/cover', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'image'
+        },
+        body: form
+    })
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(() => {
+        console.log("success uploaded")
+    })
+    .catch(err => {
+        console.error(err)
         dispatch(
             addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
         )
