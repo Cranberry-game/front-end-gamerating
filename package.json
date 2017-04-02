@@ -4,7 +4,8 @@
   "description": "The front end of the gamerating.info",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.js --open"
+    "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.js --open",
+    "build": "./node_modules/.bin/webpack --progress --profile --colors --config webpack.production.config.js"
   },
   "repository": {
     "type": "git",
