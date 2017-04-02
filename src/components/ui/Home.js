@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { grey400 } from 'material-ui/styles/colors'
 import muiTheme from '../MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AutoComplete from 'material-ui/AutoComplete'
@@ -18,6 +19,16 @@ const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput=f=>f, homeSe
         history.push('/search?name='+chosenRequest)
     }
 
+    const searchBarStyle = {
+        color: '#FFF'
+    }
+
+    const searchBarHintStyle = {
+        color: grey400
+    }
+
+    
+
     return (
         
         <div className="home-page-container">
@@ -33,7 +44,7 @@ const Home = ({ dataSource=["abc", "def", "ghi"], handleUpdateInput=f=>f, homeSe
             </div>
             <div className='search-bar-container'>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <AutoComplete hintText="Type the game you want to search" dataSource={dataSource} onUpdateInput={handleUpdateInput} className="home-page-search-bar" onNewRequest={onSearch}/>
+                    <AutoComplete hintText="Type the game you want to search" dataSource={dataSource} onUpdateInput={handleUpdateInput} className="home-page-search-bar" onNewRequest={onSearch} inputStyle={searchBarStyle} hintStyle={searchBarHintStyle}/>
                 </MuiThemeProvider>
             </div>
         </div>

@@ -12,7 +12,7 @@ import { search } from '../../store/actions'
 import '../../css/components/Search.scss'
 
 
-const Search = ({ games=[], searchGame=f=>f, location }) => {
+const Search = ({ games=[], gameLists=[], searchGame=f=>f, searchGameList=f=>f, location }) => {
 
     const parsed = queryString.parse(location.search)
     const searchName = parsed.name
@@ -22,7 +22,7 @@ const Search = ({ games=[], searchGame=f=>f, location }) => {
         <MuiThemeProvider muiTheme={muiTheme}>
             <Tabs>
                 <Tab label="Game Lists">
-                    <SearchGameLists/>
+                    <SearchGameLists gameLists={gameLists} searchName={searchName} searchGameList={searchGameList} />
                 </Tab>
                 <Tab label="Games">
                     <SearchGames games={games} searchName={searchName} searchGame={searchGame}/>

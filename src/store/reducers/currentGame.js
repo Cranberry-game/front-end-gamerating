@@ -44,7 +44,7 @@ const createAt = (state=0, action) => {
     }
 }
 
-const updateAt = (state="", action) => {
+const updateAt = (state=0, action) => {
     switch (action.type) {
         case C.FETCH_GAME_DETAILS_SUCCESS:
             return action.payload.updatedAt

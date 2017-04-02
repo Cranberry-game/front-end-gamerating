@@ -110,7 +110,8 @@ export default combineReducers({
     createTimeStamp,
     updateTimeStamp,
     name,
-    // img,
-    // creator,
-    games
+    img,
+    creator,
+    games,
+    reviews
 })

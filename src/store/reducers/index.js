@@ -8,6 +8,7 @@ import currentGame from './currentGame'
 import suggestions from './suggestions'
 import search from './search'
 import addGameList from './addGameList'
+import error from './error'
  
 const isLoginFormOpen = (state=false, action) => {
     switch (action.type) {
@@ -16,6 +17,8 @@ const isLoginFormOpen = (state=false, action) => {
         case C.CLOSE_LOGIN_FORM:
             return false
         case C.LOGIN_USER_SUCCESS:
+            return false
+        case C.LOGIN_USER_FAILURE:
             return false
         default:
             return state
@@ -30,10 +33,29 @@ const isRegisterFormOpen = (state=false, action) => {
             return false
         case C.LOGIN_USER_SUCCESS:
             return false
+        case C.LOGIN_USER_FAILURE:
+            return false
+        case C.REGISTER_USER_SUCCESS:
+            return false
+        case C.REGISTER_USER_FAILURE:
+            return false
         default:
             return state
     }
 } 
+
+const isRegistering = (state=false, action) => {
+    switch (action.type) {
+        case C.REGISTER_USER_REQUEST:
+            return true
+        case C.REGISTER_USER_SUCCESS:
+            return false
+        case C.REGISTER_USER_FAILURE:
+            return false
+        default:
+            return state
+    }
+}
 
 const isUserSettingPopoverOpen = (state=false, action) => {
     switch (action.type) {
@@ -74,5 +96,7 @@ export default combineReducers({
     isRegisterFormOpen,
     isUserSettingPopoverOpen,
     addGameList,
-    isAddingAGame
+    isAddingAGame,
+    error,
+    isRegistering
 })

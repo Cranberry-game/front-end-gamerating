@@ -10,6 +10,8 @@ const isAuthenticating = (state=false, action) => {
             return false
         case C.LOGIN_USER_FAILURE:
             return false
+        case C.LOGOUT_USER:
+            return false
         default:
             return state
     }
@@ -21,15 +23,8 @@ const isAuthenticated = (state=false, action) => {
             return true
         case C.LOGOUT_USER:
             return false
-        default:
-            return state
-    }
-}
-
-const statusText = (state="", action) => {
-    switch (action.type) {
-        case C.LOGIN_USER_FAILURE:
-            return `Authentication Error: ${action.payload.status} ${action.payload.statusMessage}`
+        case C.LOGOUT_USER:
+            return false
         default:
             return state
     }
@@ -39,6 +34,8 @@ const token = (state="", action) => {
     switch (action.type) {
         case C.LOGIN_USER_SUCCESS:
             return action.payload
+        case C.LOGOUT_USER:
+            return ""
         default:
             return state
     }
@@ -48,6 +45,8 @@ const userName = (state="", action) => {
     switch (action.type) {
         case C.LOGIN_USER_SUCCESS:
             return jwtDecode(action.payload).username
+        case C.LOGOUT_USER:
+            return ""
         case C.LOGOUT_USER:
             return ""
         default:
@@ -120,5 +119,4 @@ export default combineReducers({
     email,
     isAuthenticated,
     isAuthenticating,
-    statusText
 })

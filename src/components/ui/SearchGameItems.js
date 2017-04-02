@@ -8,7 +8,7 @@ const SearchGameItems = ({ gameTitle="", gameId=0, gameCover="", gameDesc="" }) 
     <div className='search-game-item-wrapper'>
         <Link to={`/game/${gameId}`}>
             <MuiThemeProvider muiTheme={muiTheme}>
-                <Card>
+                <Card zDepth={5}>
                     <CardMedia overlay={<CardTitle title={gameTitle} subtitle={gameDesc}/>}>
                         <div className='search-game-item-img-container'>
                             <img src={gameCover}/>

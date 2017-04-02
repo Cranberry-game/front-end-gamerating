@@ -35,6 +35,18 @@ export const logout = () => ({
     type: C.LOGOUT_USER
 })
 
+export const addErrorDialogAction = (header, message) => ({
+    type: C.ADD_ERROR_MESSAGE,
+    payload: {
+        header: header,
+        message: message
+    }
+})
+
+export const closeErrorDialogAction = () => ({
+    type: C.CLOSE_ERROR_DIALOG
+})
+
 export const login = (email, password) => dispatch => {
     dispatch({
         type: C.LOGIN_USER_REQUEST
@@ -50,8 +62,8 @@ export const login = (email, password) => dispatch => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            email: 'user1@gmail.com',
-            password: '123456'
+            email: email,
+            password: password
         })
     })
     .then(checkHttpStatus)
@@ -64,10 +76,59 @@ export const login = (email, password) => dispatch => {
         console.log(jwtDecode(res.token))
         console.log(res.token)
     })
-    .catch(err => console.error(err))
+    .catch(err => {
+        dispatch({
+            type: C.LOGIN_USER_FAILURE
+        })
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+export const registerAction = (email, name, password, avatar, age, address, phone) => dispatch => {
+    dispatch({
+        type: C.REGISTER_USER_REQUEST
+    })
 
+    // if (anyElementsEmpty({ email, password })) {
+    //     console.error('is empty')
+    //     return
+    // }
+    fetch(apiUrl+'user', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            name: name,
+            password: password,
+            avatar: avatar,
+            age: age,
+            address: address,
+            phone: phone
+        })
+    })
+    .then(checkHttpStatus)
+    .then(res => {
+        dispatch({
+            type: C.REGISTER_USER_SUCCESS
+        }) 
+        dispatch(
+            addErrorDialogAction("Register Success", "Enjoy!")
+        )
+    })
+    .catch(err => {
+        dispatch({
+            type: C.REGISTER_USER_FAILURE
+        })
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
 }
 
+// search game
 export const search = searchText => dispatch => {
 
     dispatch({
@@ -97,7 +158,50 @@ export const search = searchText => dispatch => {
         })
         console.log(JSON.stringify(res))
     })
-    .catch(err => console.error(err))
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+
+export const searchGameListAction = searchText => dispatch => {
+
+    dispatch({
+        type: C.SEARCHING,
+        payload: searchText
+    })
+
+    dispatch({
+        type: C.FETCH_GAME_LISTS_REQUEST
+    })
+
+    fetch(apiUrl + 'gamelist?name=' + searchText, {
+        method: 'get',
+        headers: {
+            'auth': store.getState().currentUser.token
+        }
+    })
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        dispatch({
+            type: C.SEARCH_SUCCESS
+        })
+        dispatch({
+            type: C.FETCH_GAME_LISTS_SUCCESS,
+            payload: res
+        })
+        console.log(JSON.stringify(res))
+    })
+    .catch(err => {
+        dispatch({
+            type: C.FETCH_GAME_LISTS_FAILED
+        })
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
 }
 
 export const queryGameById = id => dispatch => {
@@ -121,7 +225,11 @@ export const queryGameById = id => dispatch => {
             payload: res
         })
     })
-    .catch(err => console.error(err))
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
 }
 export const queryGameListByIdAction = id => dispatch => {
     dispatch({
@@ -144,7 +252,11 @@ export const queryGameListByIdAction = id => dispatch => {
             payload: res
         })
     })
-    .catch(err => console.error(err))
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
 }
 
 
@@ -175,7 +287,11 @@ export const addGameListAction = ( name, userId, description, img, games ) => di
         console.log('create success')
     })
     
-    .catch(err => console.error(err))
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
 }
 
 export const addGameReviewAction = ( userId, rate, content, gameId ) => dispatch => {
@@ -212,8 +328,13 @@ export const addGameReviewAction = ( userId, rate, content, gameId ) => dispatch
             }
         })
     })
-    .catch(err => console.error(err))
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
 }
+
 export const addGameListReviewAction = ( userId, rate, content, gamelistId ) => dispatch => {
     dispatch({
         type: C.ADD_GAMELIST_REVIEW_REQUEST
@@ -228,7 +349,7 @@ export const addGameListReviewAction = ( userId, rate, content, gamelistId ) => 
             userId: userId,
             rate: rate,
             content: content,
-            gamelistId: gamelistId
+            gameListId: gamelistId
         })
     })
     .then(checkHttpStatus)
@@ -248,7 +369,11 @@ export const addGameListReviewAction = ( userId, rate, content, gamelistId ) => 
             }
         })
     })
-    .catch(err => console.error(err))
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
 }
 
 export const addGameAction = ( title, gameType, price, releaseCompany, releaseDate, studio, platform, cover, description, screenshot ) => dispatch => {
@@ -284,7 +409,11 @@ export const addGameAction = ( title, gameType, price, releaseCompany, releaseDa
         console.log('create success')
     })
     
-    .catch(err => console.error(err))
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
 }
 
 const anyElementsEmpty = elements => {

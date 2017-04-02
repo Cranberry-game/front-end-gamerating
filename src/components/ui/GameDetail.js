@@ -13,7 +13,9 @@ import GameListShow from './GameListShow'
 import Comments from './Comments'
 import CommentSend from './CommentSend'
 import GameListList from './GameListList'
-import '../../css/components/GameDetail.scss';
+import '../../css/components/GameDetail.scss'
+import ImageGallery from 'react-image-gallery'
+import "react-image-gallery/styles/css/image-gallery.css"
 
 const arrays = [
     {
@@ -73,6 +75,8 @@ class GameDetail extends Component {
 
         const { id=0, title="", description="", platforms=[], gameType="", studio="", price="", totalRating=0, releaseDate="", releaseCompany="", reviews=[], createAt=0, updateAt=0, screenshots=[], cover="", currentUserId=0, currentUserAvatar="", addGameReview=f=>f } = this.props
 
+        console.log(screenshots.map(screenshot => ({original: screenshot})))
+
         return (
             <div className="game-details-wrapper">
                 <StoryBar title={title} description={description} time={releaseDate} imgSource={cover}/>
@@ -111,7 +115,7 @@ class GameDetail extends Component {
                             </div>
                         </MuiThemeProvider>
                     </div>
-      </div>          
+                </div>          
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <div className='add-to-list-button-container'>
                         <RaisedButton onTouchTap={this.handleTouchAddToList} label="Add to Game List"/>
@@ -122,11 +126,12 @@ class GameDetail extends Component {
                         </Popover>
                     </div>
                 </MuiThemeProvider>
-                <div className='game-show'>
+                <ImageGallery items={screenshots.map(screenshot => ({original: screenshot.img}))} autoPlay={true} showThumbnails={false} slideInterval={5000} lazyLoad={true} />
+                {/*<div className='game-show'>
                     <GameListShow screenshots={screenshots}/>
-                </div>
+                </div>*/}
                 <div className='comment-send-container'>
-                    <CommentSend addGameReview={addGameReview} currentUserId={currentUserId} currentUserAvatar={currentUserAvatar} id={id}/>
+                    <CommentSend addReview={addGameReview} currentUserId={currentUserId} currentUserAvatar={currentUserAvatar} id={id}/>
                 </div>
                 <div className='comment-list-container'>
                     <Comments comments={reviews}/>

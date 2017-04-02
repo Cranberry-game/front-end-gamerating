@@ -22,9 +22,9 @@ class CommentSend extends Component {
 
     handleSendComment = () => {  
 
-        const { id=0, currentUserId=0, addGameReview=f=>f } = this.props
+        const { id=0, currentUserId=0, addReview=f=>f } = this.props
 
-        addGameReview({
+        addReview({
             id: id,
             userId: currentUserId,
             rate: this.state.rate,
@@ -48,8 +48,8 @@ class CommentSend extends Component {
                 </div>
                 <div className='textarea-container'>
                     <i className='ipt-arrow'></i>
-                    <textarea cols="80" name="msg" rows="5" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。" className="ipt-txt" spellCheck="false" onChange={this.handleTextareaChange}/>
-                    <button type="submit" className="comment-submit" onClick={this.handleSendComment}>发表评论</button>
+                    <textarea cols="80" name="msg" rows="5" placeholder="Publish your review" className="ipt-txt" spellCheck="false" onChange={this.handleTextareaChange}/>
+                    <button type="submit" className="comment-submit" onClick={this.handleSendComment}>Send</button>
                 </div>
             </div>
         )

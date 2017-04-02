@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom'
 import '../../css/components/SearchGameListItems.scss'
 
 
-const SearchGameListItems = ({ gamelistId=0 }) => (
+const SearchGameListItems = ({ gamelistId=0, creatorId=0, creatorName="", creatorAvatar="", gameListName="", gameListCover="",gameListDescription="" }) => (
     <div className='search-gamelist-item-wrapper'>
         <Link to={`/gamelist/${gamelistId}`}>
             <MuiThemeProvider muiTheme={muiTheme}>
-                <Card>
-                    <CardHeader title="wang ye" subtitle="senior gamer" avatar="http://i1.kym-cdn.com/entries/icons/facebook/000/007/217/Potatoe.jpg"/>
-                    <CardMedia overlay={<CardTitle title="Best Games" subtitle="Best Game" />} >
+                <Card zDepth={5}>
+                    <CardHeader title={creatorName} avatar={creatorAvatar}/>
+                    <CardMedia overlay={<CardTitle title={gameListName} subtitle={gameListDescription} />} >
                         <div className='search-gamelist-item-img-container'>
-                            <img src="http://i1.kym-cdn.com/entries/icons/facebook/000/007/217/Potatoe.jpg"/>
+                            <img src={gameListCover}/>
                         </div>
                     </CardMedia>
                 </Card>

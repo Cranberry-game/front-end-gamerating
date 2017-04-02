@@ -8,6 +8,7 @@ import muiTheme from './MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
 import Avatar from 'material-ui/Avatar'
+import Dialog from 'material-ui/Dialog'
 import Popover from 'material-ui/Popover'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
@@ -23,7 +24,7 @@ import AddGame from './containers/AddGame'
 import AddGameList from './containers/AddGameList'
 import { connect } from 'react-redux'
 import '../css/components/index.scss'
-import { openLogin, closeLogin, openRegister, closeRegister, openSettingPopover, closeSettingPopover, login, logout } from '../store/actions'
+import { openLogin, closeLogin, openRegister, closeRegister, openSettingPopover, closeSettingPopover, login, logout, closeErrorDialogAction, registerAction } from '../store/actions'
 
 const NoMatch = ({ location }) => (
     <div className="no-match">
@@ -54,9 +55,31 @@ class App extends Component {
         })
     }
 
+    handleCloseError = () => {
+        const { closeErrorDialog } = this.props
+        closeErrorDialog()
+    }
+
+    handleTouchLogout = () => {
+        const { handleLogout } = this.props
+        handleLogout()
+        this.setState({
+            open: false
+        })
+    }
+
     render() {
 
-        const { isLoginFormOpen=false, isRegisterFormOpen=false, isUserSettingPopoverOpen=false, isAuthenticated=true, avatar='http://img.duoziwang.com/2016/12/08/18594927932.jpg', openRegisterForm=f=>f, openLoginForm=f=>f, closeRegisterForm=f=>f, closeLoginForm=f=>f, handleLogin=f=>f, openSetting=f=>f, closeSetting=f=>f, handlelogout=f=>f } = this.props
+        const actions = [
+            <FlatButton
+                label="OK"
+                primary={true}
+                keyboardFocused={true}
+                onTouchTap={this.handleCloseError}
+            />,
+        ]
+
+        const { isLoginFormOpen=false, isRegisterFormOpen=false, isUserSettingPopoverOpen=false, isAuthenticated=true, isErrorDialogOpen=false, errorMessage='', errorHeader='', avatar='http://img.duoziwang.com/2016/12/08/18594927932.jpg', openRegisterForm=f=>f, openLoginForm=f=>f, closeRegisterForm=f=>f, closeLoginForm=f=>f, handleLogin=f=>f, openSetting=f=>f, closeSetting=f=>f, handlelogout=f=>f, register=f=>f } = this.props
 
         const loginButtonStyle = {
             bottom: -12,
@@ -78,30 +101,41 @@ class App extends Component {
                 <div>
                     <div className='navigator'>
                         <MuiThemeProvider muiTheme={muiTheme}>
-                            <AppBar title="Game Rating">
-                            {(isAuthenticated)? 
                             <div>
-                                <div onClick={this.handleTouchTap}>
-                                    <Avatar src={avatar} style={avatarStyle}/> 
-                                </div>
-                                <Popover
-                                    open={this.state.open}
-                                    anchorEl={this.state.anchorEl}
-                                    anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
-                                    targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                                    onRequestClose={this.handleRequestClose}
+                                <AppBar title="Game Rating">
+                                {(isAuthenticated)? 
+                                <div>
+                                    <div onClick={this.handleTouchTap}>
+                                        <Avatar src={avatar} style={avatarStyle}/> 
+                                    </div>
+                                    <Popover
+                                        open={this.state.open}
+                                        anchorEl={this.state.anchorEl}
+                                        anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
+                                        targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                                        onRequestClose={this.handleRequestClose}
+                                        >
+                                        <Menu>
+                                            <MenuItem primaryText="Settings" />
+                                            <MenuItem primaryText="Sign out" onTouchTap={this.handleTouchLogout}/>
+                                        </Menu>
+                                    </Popover>
+                                </div>:
+                                <div>
+                                    <FlatButton label="Register" onTouchTap={openRegisterForm} style={loginButtonStyle}/> 
+                                    <FlatButton label="Login" onTouchTap={openLoginForm} style={registerButtonStyle}/>
+                                </div>}
+                                </AppBar>
+                                <Dialog
+                                    title={errorHeader}
+                                    actions={actions}
+                                    modal={false}
+                                    open={isErrorDialogOpen}
+                                    onRequestClose={this.handleCloseError}
                                     >
-                                    <Menu>
-                                        <MenuItem primaryText="Settings" />
-                                        <MenuItem primaryText="Sign out" />
-                                    </Menu>
-                                </Popover>
-                            </div>:
-                            <div>
-                                <FlatButton label="Register" onTouchTap={openRegisterForm} style={loginButtonStyle}/> 
-                                <FlatButton label="Login" onTouchTap={openLoginForm} style={registerButtonStyle}/>
-                            </div>}
-                            </AppBar>
+                                    {errorMessage}
+                                </Dialog>
+                            </div>
                         </MuiThemeProvider>    
                     </div>
                     
@@ -117,7 +151,7 @@ class App extends Component {
                         <Route component={NoMatch} />
                     </Switch>
                     <LoginForm isLoginFormOpen={isLoginFormOpen} closeLoginForm={closeLoginForm} handleLogin={handleLogin}/>
-                    <RegisterForm isRegisterFormOpen={isRegisterFormOpen} closeRegisterForm={closeRegisterForm}/>
+                    <RegisterForm isRegisterFormOpen={isRegisterFormOpen} closeRegisterForm={closeRegisterForm} register={register}/>
                 </div>
             </Router>
         )
@@ -129,7 +163,10 @@ const mapStateToProps = state => ({
     isRegisterFormOpen: state.isRegisterFormOpen,
     isUserSettingPopoverOpen: state.isUserSettingPopoverOpen,
     isAuthenticated: state.currentUser.isAuthenticated,
-    avatar: state.currentUser.avatar
+    avatar: state.currentUser.avatar,
+    errorMessage: state.error.errorMessage,
+    errorHeader: state.error.errorHeader,
+    isErrorDialogOpen: state.error.isErrorDialogOpen
 })
         
 const mapDispatchToProps = dispatch => ({
@@ -168,9 +205,19 @@ const mapDispatchToProps = dispatch => ({
             login(email, password)
         )
     },
-    handlelogout() {
+    handleLogout() {
         dispatch(
             logout()
+        )
+    },
+    closeErrorDialog() {
+        dispatch(
+            closeErrorDialogAction()
+        )
+    },
+    register({ email, name, password, avatar, age, address, phone }) {
+        dispatch(
+            registerAction(email, name, password, avatar, age, address, phone)
         )
     }
     

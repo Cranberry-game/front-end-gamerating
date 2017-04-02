@@ -21,8 +21,9 @@
             overflow: hidden;
             height: 300px;
             img {
-                width: 100vh;
-                height: 100vw;
+                margin: 0 auto;
+                width: 100%;
+                height: 100%;
                 display: block; 
                 z-index: -1;
                 object-fit: cover;
@@ -35,7 +36,7 @@
             right: 0;
             bottom: 0;
             left: 0;
-            background-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            background-image: linear-gradient(to left, rgba(0, 0, 0, .8), rgba(0, 0, 0, .8), rgba(0, 0, 0, 0));
         }
     
 

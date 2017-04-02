@@ -5,17 +5,27 @@ import Dialog from 'material-ui/Dialog'
 import Divider from 'material-ui/Divider'
 import TextField from 'material-ui/TextField'
 
-const RegisterForm = ({ isRegisterFormOpen, closeRegisterForm }) => {
+const RegisterForm = ({ isRegisterFormOpen=false, closeRegisterForm=f=>f, register=f=>f }) => {
 
-    let _userName = '', _email = '', _password = '', _age = '', _address = ''
+    let _userName = '', _email = '', _password = '', _age = '', _address = '', _phone = ''
 
     const handleRegister = e => {
         e.preventDefault()
-        console.log(_userName)
-        console.log(_email)
-        console.log(_password)
-        console.log(_age)
-        console.log(_address)
+        register({
+            email: _email,
+            name: _userName,
+            password: _password,
+            avatar: "http://leuction.com/static/img/landing/leuction.jpeg",
+            age: _age,
+            address: _address,
+            phone: _phone
+        })
+        console.log('userName ' + _userName)
+        console.log('email ' + _email)
+        console.log('password ' + _password)
+        console.log('age ' + _age)
+        console.log('address ' + _address)
+        console.log('phone ' + _phone)
     }
 
     const handleClose = () => {
@@ -25,6 +35,7 @@ const RegisterForm = ({ isRegisterFormOpen, closeRegisterForm }) => {
         _password = ''
         _age = ''
         _address = ''
+        _phone = ''
     }
 
     const actions = [
@@ -46,6 +57,8 @@ const RegisterForm = ({ isRegisterFormOpen, closeRegisterForm }) => {
                 <TextField hintText="Age" underlineShow={false} onChange={(e, input) => _age = input}/>
                 <Divider />
                 <TextField hintText="Address" underlineShow={false} onChange={(e, input) => _address = input}/>
+                <Divider />
+                <TextField hintText="Phone" underlineShow={false} onChange={(e, input) => _phone = input}/>
                 <Divider />
             </Dialog>
         </MuiThemeProvider>

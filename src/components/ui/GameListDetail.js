@@ -24,11 +24,11 @@ class GameListDetail extends Component {
 
     render() {
 
-        const { gamelistName='', gameListDescription='', createTimeStamp=0, updateTimeStamp=0, games=[] } = this.props
+        const { id=0, currentUserId=0, currentUserAvatar='', gamelistName='', gameListDescription='', createTimeStamp=0, updateTimeStamp=0, games=[], reviews=[], addGameListReview=f=>f, cover='' } = this.props
 
         return (
             <div className="game-list-detail">
-                <StoryBar title={gamelistName} description={gameListDescription} />
+                <StoryBar title={gamelistName} description={gameListDescription} imgSource={cover} />
                 {/*<div className='game-info'>
                     <div className='gamelist-name-container'>
                         <h3 className='gamelist-name'>{gameListName}</h3>
@@ -41,10 +41,10 @@ class GameListDetail extends Component {
                     <GameListList games={games}/>
                 </div>
                 <div className='comment-send-container'>
-                    <CommentSend/>
+                    <CommentSend addReview={addGameListReview} currentUserId={currentUserId} currentUserAvatar={currentUserAvatar} id={id}/>
                 </div>
                 <div className='comment-list-container'>
-                    <Comments/>
+                    <Comments comments={reviews}/>
                 </div>
             </div>
         )
