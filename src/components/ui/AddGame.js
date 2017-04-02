@@ -9,6 +9,7 @@ import DatePicker from 'material-ui/DatePicker'
 import DropzoneComponent from 'react-dropzone-component'
 import 'react-dropzone-component/styles/filepicker.css'
 import 'dropzone/dist/min/dropzone.min.css'
+import '../../css/components/AddGame.scss';
 
 const gameTypes = [
     'FPS',
