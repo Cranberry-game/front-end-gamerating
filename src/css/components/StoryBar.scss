@@ -22,32 +22,19 @@
     .story-header-imgContainer {
         height: 100%;
         width: 100%;
-//           display: -webkit-flex;
-//   display:         flex;
-//   -webkit-align-items: center;
-//           align-items: center;
-//   -webkit-justify-content: center;
-//           justify-content: center;
-
         overflow: hidden;
         .story-header-imgContainer-img {
             display: block;
             width: 100%;
-                    height: 100%;
+            height: 100%;
 
             display: -webkit-flex;
-            display:         flex;
+            display: flex;
             -webkit-align-items: center;
-                    align-items: center;
+            align-items: center;
             -webkit-justify-content: center;
-                    justify-content: center;
-
-            // width: 100%; height: auto;max-width: 100%;
-
+            justify-content: center;
             position: relative;
-            // right: 250%;
-            // width: 100%;
-            // height: 100%;
             
             img {
                 display: block;
@@ -69,32 +56,35 @@
         // height: 30px;
         line-height: 30px;
         z-index: 1;
-        // height: 100%;
-        // width: 100%;
+        height: 100%;
+        width: 100%;
         table-layout: fixed;
-        display: inline;
         text-align:center;
 
         .story-header-text {
             position:relative;
-            // display: table-cell;
-            left: -50%;
-            width: 100%;
+            max-width: 90%;
+            margin: 0 auto;
             height: 100%;
 
-            // vertical-align: middle;
+            vertical-align: middle;
             text-shadow: 0px 1px 2px #333;
 
             .story-title{
                 @include font-with-var(5em, 700);
+                overflow : hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
             }
             .story-description {
                 @include font-with-var(1.5em, 500);
-                line-height: 1.5em;
-                height: 3.7em;
-                overflow: hidden;
+                overflow : hidden;
                 text-overflow: ellipsis;
-                // white-space: nowrap;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
             }
         }
     }
