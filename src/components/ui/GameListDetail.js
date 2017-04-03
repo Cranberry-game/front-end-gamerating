@@ -18,13 +18,13 @@ class GameListDetail extends Component {
 
         const { location=null, match=null, queryGameList=f=>f } = this.props
         queryGameList(match.params.listId)
-        console.log(match.params.listId)
+        console.log(match.url)
     }
 
 
     render() {
 
-        const { id=0, currentUserId=0, currentUserAvatar='', gamelistName='', gameListDescription='', createTimeStamp=0, updateTimeStamp=0, games=[], reviews=[], addGameListReview=f=>f, cover='' } = this.props
+        const { id=0, currentUserId=0, currentUserAvatar='', gamelistName='', gameListDescription='', createTimeStamp=0, updateTimeStamp=0, games=[], reviews=[], addGameListReview=f=>f, cover='', removeGameFromGameList=f=>f } = this.props
 
         return (
             <div className="game-list-detail">
@@ -38,7 +38,7 @@ class GameListDetail extends Component {
                     </div>
                 </div>*/}
                 <div className='gamelistlist-wrapper'>
-                    <GameListList games={games}/>
+                    <GameListList games={games} removeGameFromGameList={removeGameFromGameList}/>
                 </div>
                 <div className='comment-send-container'>
                     <CommentSend addReview={addGameListReview} currentUserId={currentUserId} currentUserAvatar={currentUserAvatar} id={id}/>

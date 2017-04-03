@@ -9,6 +9,7 @@ import suggestions from './suggestions'
 import search from './search'
 import addGameList from './addGameList'
 import error from './error'
+import { routerReducer } from 'react-router-redux'
  
 const isLoginFormOpen = (state=false, action) => {
     switch (action.type) {
@@ -98,5 +99,6 @@ export default combineReducers({
     addGameList,
     isAddingAGame,
     error,
-    isRegistering
+    isRegistering,
+    routerReducer
 })

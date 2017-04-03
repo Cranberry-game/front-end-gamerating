@@ -27,6 +27,32 @@ const isPosting = (state=false, action) => {
     }
 }
 
+const isRemoving = (state=false, action) => {
+    switch (action.type) {
+        case C.REMOVE_GAME_FROM_GAMELIST_REQUEST:
+            return true
+        case C.REMOVE_GAME_FROM_GAMELIST_SUCCESS:
+            return false
+        case C.REMOVE_GAME_FROM_GAMELIST_FAILED:
+            return false
+        default:
+            return state
+    }
+}
+
+const isAdding = (state=false, action) => {
+    switch (action.type) {
+        case C.ADD_GAME_FROM_GAMELIST_REQUEST:
+            return true
+        case C.ADD_GAME_FROM_GAMELIST_SUCCESS:
+            return false
+        case C.ADD_GAME_FROM_GAMELIST_FAILED:
+            return false
+        default:
+            return state
+    }
+}
+
 const id = (state=0, action) => {
     switch (action.type) {
         case C.FETCH_GAMELIST_DETAILS_SUCCESS:
@@ -84,6 +110,13 @@ const games = (state=[], action) => {
     switch (action.type) {
         case C.FETCH_GAMELIST_DETAILS_SUCCESS:
             return action.payload.games
+        case C.REMOVE_GAME_FROM_GAMELIST_SUCCESS:
+            return state.filter(game => game.id !== action.payload)
+        case C.ADD_GAME_FROM_GAMELIST_SUCCESS:
+            return [
+                action.payload,
+                ...state
+            ]
         default:
             return state
     }
@@ -106,6 +139,8 @@ const reviews = (state=[], action) => {
 export default combineReducers({
     isFetching,
     isPosting,
+    isRemoving,
+    isAdding,
     id,
     createTimeStamp,
     updateTimeStamp,

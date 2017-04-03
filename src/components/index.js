@@ -3,7 +3,7 @@ import { Component } from 'react'
 import Test from './ui/Test'
 import Home from './containers/Home'
 import ManageUser from './ui/ManageUser'
-import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import muiTheme from './MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
@@ -25,6 +25,8 @@ import AddGameList from './containers/AddGameList'
 import { connect } from 'react-redux'
 import '../css/components/index.scss'
 import { openLogin, closeLogin, openRegister, closeRegister, openSettingPopover, closeSettingPopover, login, logout, closeErrorDialogAction, registerAction } from '../store/actions'
+import { ConnectedRouter, push } from 'react-router-redux'
+import history from '../history'
 
 const NoMatch = ({ location }) => (
     <div className="no-match">
@@ -68,6 +70,11 @@ class App extends Component {
         })
     }
 
+    handleTitleTouchTap = e => {
+        const { redirectToHome=f=>f } = this.props
+        redirectToHome()
+    }
+
     render() {
 
         const actions = [
@@ -97,12 +104,13 @@ class App extends Component {
         }
 
         return (
-            <Router>
+            // <Router>
+            <ConnectedRouter history={history}>
                 <div>
                     <div className='navigator'>
                         <MuiThemeProvider muiTheme={muiTheme}>
                             <div>
-                                <AppBar title="Game Rating">
+                                <AppBar title="Game Rating" iconElementLeft={null} showMenuIconButton={false} onTitleTouchTap={this.handleTitleTouchTap}>
                                 {(isAuthenticated)? 
                                 <div>
                                     <div onClick={this.handleTouchTap}>
@@ -153,7 +161,8 @@ class App extends Component {
                     <LoginForm isLoginFormOpen={isLoginFormOpen} closeLoginForm={closeLoginForm} handleLogin={handleLogin}/>
                     <RegisterForm isRegisterFormOpen={isRegisterFormOpen} closeRegisterForm={closeRegisterForm} register={register}/>
                 </div>
-            </Router>
+            </ConnectedRouter>
+            // </Router>
         )
     }
 }
@@ -218,6 +227,11 @@ const mapDispatchToProps = dispatch => ({
     register({ email, name, password, avatar, age, address, phone }) {
         dispatch(
             registerAction(email, name, password, avatar, age, address, phone)
+        )
+    },
+    redirectToHome() {
+        dispatch(
+            push('/')
         )
     }
     

@@ -1,10 +1,12 @@
 import { Component } from 'react'
 import '../../css/components/GameListItem.scss'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
+import RaisedButton from 'material-ui/RaisedButton'
 import ContentCancel from 'material-ui/svg-icons/action/delete'
 import muiTheme from '../MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Paper from 'material-ui/Paper'
+import { Link } from 'react-router-dom'
 
 
 class GameListItem extends Component {
@@ -15,46 +17,57 @@ class GameListItem extends Component {
         }
     }
 
-    mouseOver = () => {
+    mouseOver = e => {
+        e.preventDefault()
         this.setState({
             hover: true
         })
     }
 
-    mouseOut = () => {
+    mouseOut = e => {
+        e.preventDefault()
         this.setState({
             hover: false
         })
     }
 
+    handleRemoveGameFromGameList = e => {
+        e.preventDefault()
+        console.log("touched")
+        const { gameId=0, removeGameFromGameList=f=>f } = this.props
+        removeGameFromGameList(gameId)
+    }
+
     render() {
 
-        const { gamecover='', gametitle='', gamedesc='' } = this.props
+        const { gamecover='', gametitle='', gamedesc='', gameId=0 } = this.props
 
         return(
             <div className='mouse-enter-or-out-wrapper' onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
                 <div className='gamelistitem-container'>
                         <div className="delete-game-button-container">
-                        {(this.state.hover)?
+                        {/*{(this.state.hover)?*/}
                         <MuiThemeProvider muiTheme={muiTheme}>
-                            <FloatingActionButton>
-                                <ContentCancel />
+                            <FloatingActionButton zDepth={3} onTouchTap={this.handleRemoveGameFromGameList}>
+                                <ContentCancel/>
                             </FloatingActionButton>
                         </MuiThemeProvider>
-                        :null}
+                        {/*:null}*/}
                     </div>
 
                     <MuiThemeProvider muiTheme={muiTheme}>
-                        <Paper zDepth={5}>
-                            <div className='gamelistitem-img-container'>
-                                <img src={gamecover} alt='gamecover' />
-                            </div>
-                            <div className='gamelistitem-img-cover'></div>
-                            <div className='gamelistitem-img-header-container'>
-                                <h3 className='gamelistitem-img-title'>{gametitle}</h3>
-                                <p className='gamelistitem-img-desc'>{gamedesc}</p>
-                            </div>
-                        </Paper>
+                        <Link to={`/game/${gameId}`}>
+                            <Paper zDepth={5}>
+                                <div className='gamelistitem-img-container'>
+                                    <img src={gamecover} alt='gamecover' />
+                                </div>
+                                <div className='gamelistitem-img-cover'></div>
+                                <div className='gamelistitem-img-header-container'>
+                                    <h3 className='gamelistitem-img-title'>{gametitle}</h3>
+                                    <p className='gamelistitem-img-desc'>{gamedesc}</p>
+                                </div>
+                            </Paper>
+                        </Link>
                     </MuiThemeProvider>
                 </div>
             </div>

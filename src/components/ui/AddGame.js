@@ -17,8 +17,15 @@ const gameTypes = [
 ]
 
 const platforms = [
-    'Xbox',
-    'PS4'
+    'Xbox One',
+    'Xbox 360',
+    'PS3',
+    'Mobile', 
+    'Vita', 
+    'PS4', 
+    'Nintendo Switch', 
+    'Wii U', 
+    'PC'
 ]
 
 const uploadComponentConfig = {

@@ -425,6 +425,7 @@ export const uploadCoverAction = file => dispatch => {
     fetch(apiUrl + 'upload/cover', {
         method: 'post',
         headers: {
+            'auth': store.getState().currentUser.token,
             'Content-Type': 'image'
         },
         body: form
@@ -440,6 +441,42 @@ export const uploadCoverAction = file => dispatch => {
             addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
         )
     })
+}
+
+export const removeGameFromGameListAction = id => dispatch => {
+    dispatch({
+        type: C.REMOVE_GAME_FROM_GAMELIST_REQUEST
+    })
+    fetch(apiUrl + 'gamelist', {
+        method: 'put',
+        headers: {
+            'auth': store.getState().currentUser.token,
+            'Content-Type': 'application/json',
+            'type': 'delete'
+        },
+        body: JSON.stringify({
+            gameId: id,
+            gameListId: id
+        })
+    })
+    .then(checkHttpStatus)
+    .then(res => {
+        console.log("remove success")
+        dispatch({
+            type: C.REMOVE_GAME_FROM_GAMELIST_SUCCESS,
+            payload: id
+        })
+    })
+    .catch(err => {
+        dispatch({
+            type: C.REMOVE_GAME_FROM_GAMELIST_FAILED,
+            payload: id
+        })
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+
 }
 
 const anyElementsEmpty = elements => {

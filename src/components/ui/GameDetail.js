@@ -75,8 +75,6 @@ class GameDetail extends Component {
 
         const { id=0, title="", description="", platforms=[], gameType="", studio="", price="", totalRating=0, releaseDate="", releaseCompany="", reviews=[], createAt=0, updateAt=0, screenshots=[], cover="", currentUserId=0, currentUserAvatar="", addGameReview=f=>f } = this.props
 
-        console.log(screenshots.map(screenshot => ({original: screenshot})))
-
         return (
             <div className="game-details-wrapper">
                 <StoryBar title={title} description={description} time={releaseDate} imgSource={cover}/>

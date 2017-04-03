@@ -1,6 +1,6 @@
 import GameListDetail from '../ui/GameListDetail'
 import { connect } from 'react-redux'
-import { queryGameListByIdAction, addGameListReviewAction } from '../../store/actions'
+import { queryGameListByIdAction, addGameListReviewAction, removeGameFromGameListAction } from '../../store/actions'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => ({
@@ -24,6 +24,11 @@ const mapDispatchToProps = dispatch => ({
     addGameListReview({id, userId, rate, content}) {
         dispatch(
             addGameListReviewAction(userId, rate, content, id)
+        )
+    },
+    removeGameFromGameList(id) {
+        dispatch(
+            removeGameFromGameListAction(id)
         )
     }
 })
