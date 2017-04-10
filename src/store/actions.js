@@ -4,7 +4,7 @@ import { parseJSON, checkHttpStatus } from './utils'
 import jwtDecode from 'jwt-decode'
 import store from './index'
 import { history } from 'react-router-dom'
-import FormData from 'form-data'
+import FormData from 'isomorphic-form-data'
 
 const apiUrl = 'http://gamerating.info/api/v1/'
 
@@ -417,23 +417,49 @@ export const addGameAction = ( title, gameType, price, releaseCompany, releaseDa
     })
 }
 
-export const uploadCoverAction = file => dispatch => {
-    console.log(JSON.stringify(file))
-    let form = new FormData()
-    form.append('files', file)
-    console.log(form)
-    fetch(apiUrl + 'upload/cover', {
-        method: 'post',
+export const uploadScreenShotsAction = acceptedFiles => dispatch => {
+
+    let data = new FormData()
+    acceptedFiles.forEach(file => data.append('files', file))
+    // data.append('files', acceptedFiles)
+
+    fetch(apiUrl + 'upload/scshot', {
+        method: 'POST',
         headers: {
-            'auth': store.getState().currentUser.token,
-            'Content-Type': 'image'
+            'auth': store.getState().currentUser.token
         },
-        body: form
+        body: data
     })
     .then(checkHttpStatus)
     .then(parseJSON)
-    .then(() => {
-        console.log("success uploaded")
+    .then(res => {
+        console.log(JSON.stringify(res.url))
+    })
+    .catch(err => {
+        console.error(err)
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+export const uploadCoverAction = acceptedFiles => dispatch => {
+
+    let file = acceptedFiles[0]
+    let data = new FormData()
+    data.append('files', file)
+
+    // fetch('http://gamerating.info/api/v1/upload/cover', {
+    fetch(apiUrl + 'upload/cover', {
+        method: 'POST',
+        headers: {
+            'auth': store.getState().currentUser.token
+        },
+        body: data
+    })
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        console.log(res.url)
     })
     .catch(err => {
         console.error(err)
@@ -471,6 +497,36 @@ export const removeGameFromGameListAction = id => dispatch => {
         dispatch({
             type: C.REMOVE_GAME_FROM_GAMELIST_FAILED,
             payload: id
+        })
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+
+}
+
+export const queryGameByPrefixAction = prefix => dispatch => {
+    console.log("query suggestions")
+    dispatch({
+        type: C.FETCH_GAME_SUGGESTIONS_REQUEST
+    })
+    fetch(apiUrl + 'suggest?name=' + prefix, {
+        method: 'get',
+        headers: {
+            'auth': store.getState().currentUser.token
+        }
+    })
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        dispatch({
+            type: C.FETCH_GAME_SUGGESTIONS_SUCCESS,
+            payload: res
+        })
+    })
+    .catch(err => {
+        dispatch({
+            type: C.FETCH_GAME_SUGGESTIONS_FAILED
         })
         dispatch(
             addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)

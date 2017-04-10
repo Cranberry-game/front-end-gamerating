@@ -29,7 +29,7 @@ const isPosting = (state=false, action) => {
 const suggestions = (state=[], action) => {
     switch (action.type) {
         //payload should contains an array of gamelists
-        case C.FETCH_GAME_LISTS_SUCCESS:
+        case C.FETCH_GAME_SUGGESTIONS_SUCCESS:
             return action.payload
         default:
             return state

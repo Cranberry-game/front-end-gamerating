@@ -6,10 +6,13 @@ import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import DatePicker from 'material-ui/DatePicker'
-import DropzoneComponent from 'react-dropzone-component'
+import Dropzone from 'react-dropzone'
+import request from 'superagent'
+import fetch from 'isomorphic-fetch'
+import FormData from 'form-data'
 import 'react-dropzone-component/styles/filepicker.css'
 import 'dropzone/dist/min/dropzone.min.css'
-import '../../css/components/AddGame.scss';
+import '../../css/components/AddGame.scss'
 
 const gameTypes = [
     'FPS',
@@ -68,13 +71,13 @@ class AddGame extends Component {
     }
 
     handleDropScreenshots = (files) => {
-        console.log('Received files: ', files)
+        console.log('Received files: ', JSON.stringify(files[0]))
     }
 
     handleAddGame = () => {
 
-        const { addGame=f=>f } = this.props
-        
+        const { addGame=f=>f, uploadCover } = this.props
+
         addGame({
             title: this._name,
             gameType: this.state.gameTypeValue,
@@ -90,19 +93,28 @@ class AddGame extends Component {
         // console.log(this._name, this._description, this._price, this._releaseCompany, this._studio, this.state.gameTypeValue, this.state.platformValues, this._date.getUTCMonth())
     }
 
-    handleFileAdded(file) {
-        const { uploadCover } = this.props
-        console.log(file.getAsDataURL)
-        uploadCover(file)
+    handleFileDropped = acceptedFiles => {
+        // console.log(JSON.stringify(files[0]))
+        // console.log(files[0].preview)
+        
+        // let file = acceptedFiles[0]
+        // let data = new FormData()
+        // data.append('files', file)
+
+        // fetch('http://gamerating.info/api/v1/upload/cover', {
+        //     method: 'POST',
+        //     body: data
+        // })
+        // .then(res => res.json())
+        // .then(res => console.log(res.url))
+
+        const { uploadCover, uploadScreenShots } = this.props
+        uploadScreenShots(acceptedFiles)
     }
 
     render() {
 
         const {  } = this.props
-        
-        const uploadEventHandlers = {
-            addedfile: this.handleFileAdded.bind(this)
-        }
 
         return(
             <div>
@@ -137,7 +149,10 @@ class AddGame extends Component {
                             <DatePicker hintText="Release Date" onChange={(event, input) => this._date = input} fullWidth={true}/>
                         </div>
                         <div className='add-screenshots-wrapper'>
-                            <DropzoneComponent config={uploadComponentConfig} djsConfig={uploadDjsConfig} eventHandlers={uploadEventHandlers}/>
+                            {/*<DropzoneComponent config={uploadComponentConfig} djsConfig={uploadDjsConfig} eventHandlers={uploadEventHandlers}/>*/}
+                            <Dropzone onDrop={this.handleFileDropped} multiple={true}>
+                                <div>Try dropping some files here, or click to select files to upload.</div>
+                            </Dropzone>
                         </div>
                         <div className="add-game-button-wrapper">
                             <RaisedButton label="Add Game" primary={true} onTouchTap={this.handleAddGame} fullWidth={true}/>
