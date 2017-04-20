@@ -2,13 +2,54 @@
 
 .add-game-list-wrapper {
     margin-top: 30px;
- 
+
+    .upload-gamelist-cover {
+        height: 250px;
+     	display: -webkit-flex; 
+		display: flex; 
+		-webkit-align-items: center; 
+		align-items: center; 
+		-webkit-justify-content: center; 
+        justify-content: center; 
+        overflow: hidden;  
+
+        img {
+            display: block;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+
+    }
+
+    .add-gamelist-cover-wrapper {
+        height: 250px;
+     	display: -webkit-flex; 
+		display: flex; 
+		-webkit-align-items: center; 
+		align-items: center; 
+		-webkit-justify-content: center; 
+        justify-content: center; 
+    }
+
     .add-game-list-name-wrapper {
         text-align: center;
     }
 
     .add-game-list-desc-wrapper {
         margin-top:20px;
+        text-align: center;
+    }
+    
+    .add-gamelist-games-wrapper {
+        height: 30px; 
+     	display: -webkit-flex; 
+		display: flex; 
+		-webkit-align-items: center; 
+		align-items: center; 
+		-webkit-justify-content: center; 
+        justify-content: center;
+    }
+    .add-game-list-games-wrapper {
         text-align: center;
     }
 

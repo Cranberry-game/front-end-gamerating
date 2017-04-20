@@ -7,14 +7,65 @@
     margin: 0 auto;
     margin-top: 30px;
     min-width: 200px;
+
+    .upload-game-cover {
+        height: 250px;
+     	display: -webkit-flex; 
+		display: flex; 
+		-webkit-align-items: center; 
+		align-items: center; 
+		-webkit-justify-content: center; 
+        justify-content: center; 
+        overflow: hidden;  
+
+        img {
+            display: block;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+    }
+
+    .add-cover-wrapper {
+        height: 250px;
+     	display: -webkit-flex; 
+		display: flex; 
+		-webkit-align-items: center; 
+		align-items: center; 
+		-webkit-justify-content: center; 
+        justify-content: center; 
+    }
  
     .add-game-name-wrapper {
         text-align: center;
     }
 
-    .add-screenshots-wrapper {
-        margin-top: 40px;
+    .game-screenshots-wrapper {
+        height: 250px;
+     	display: -webkit-flex; 
+		display: flex; 
+		-webkit-align-items: center; 
+		align-items: center; 
+		-webkit-justify-content: center; 
+        justify-content: center; 
+        overflow: hidden;  
+
+        img {
+            display: block;
+            margin-bottom: 20px;
+            height: 100%;
+        }
     }
+
+    .add-screenshots-wrapper {
+        height: 250px;
+     	display: -webkit-flex; 
+		display: flex; 
+		-webkit-align-items: center; 
+		align-items: center; 
+		-webkit-justify-content: center; 
+        justify-content: center; 
+    }
+
 
     .add-game-button-wrapper {
         margin-top: 40px;
