@@ -7,7 +7,7 @@ import '../../css/components/UserListItem.scss'
 
 
 
-const UserListItem = ({ userName="username", avatar="http://leuction.com/static/img/landing/leuction.jpeg", isAdmin=true, isVerified=true }) => {
+const UserListItem = ({ id=0, userName="", avatar="", isAdmin=false, isVerified=false, toggleUserAdmin=f=>f, toggleUserVerifity=f=>f, deleteUser=f=>f }) => {
 
     const adminStyle = {
         display: 'inline-block',
@@ -27,6 +27,27 @@ const UserListItem = ({ userName="username", avatar="http://leuction.com/static/
         float: 'right'
     }
 
+    const handleToggleUserAdmin = e => {
+        e.preventDefault()
+        toggleUserAdmin({
+            id: id,
+            isAdmin: !isAdmin
+        })
+    }
+
+    const handleToggleUserVerifity = e => {
+        e.preventDefault()
+        toggleUserVerifity({
+            id: id,
+            isVerified: !isVerified
+        })
+    }
+
+    const handleDeleteUser = e => {
+        e.preventDefault()
+        deleteUser(id)
+    }
+
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
             <Card>
@@ -34,19 +55,19 @@ const UserListItem = ({ userName="username", avatar="http://leuction.com/static/
                 <CardText>
                     <Toggle
                         toggled={isAdmin}
-                        onToggle={() => console.log("nothing")}
+                        onToggle={handleToggleUserAdmin}
                         labelPosition="left"
                         label="Admin"
                         style={adminStyle}
                     />
                     <Toggle
                         toggled={isVerified}
-                        onToggle={() => console.log("nothing")}
+                        onToggle={handleToggleUserVerifity}
                         labelPosition="left"
                         label="Verified"
                         style={verifiedStyle}
                     />
-                    <RaisedButton label="delete" secondary={true} style={deleteStyle} />
+                    <RaisedButton label="delete" secondary={true} style={deleteStyle} onTouchTap={handleDeleteUser}/>
                 </CardText>
             </Card>
         </MuiThemeProvider>

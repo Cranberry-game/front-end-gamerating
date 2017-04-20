@@ -1,6 +1,6 @@
 import GameDetail from '../ui/GameDetail'
 import { connect } from 'react-redux'
-import { queryGameById, addGameReviewAction } from '../../store/actions'
+import { queryGameById, addGameReviewAction, getGameListByUserIdAction, addGameToGameListAction } from '../../store/actions'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => ({
@@ -20,7 +20,8 @@ const mapStateToProps = state => ({
     screenshots: state.currentGame.screenshots,
     cover: state.currentGame.cover,
     currentUserId: state.currentUser.id,
-    currentUserAvatar: state.currentUser.avatar
+    currentUserAvatar: state.currentUser.avatar,
+    gamelistSuggestions: state.currentUser.gamelists
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -33,7 +34,18 @@ const mapDispatchToProps = dispatch => ({
         dispatch(
             addGameReviewAction(userId, rate, content, id)
         )
+    },
+    getGameListByUserId(id) {
+        dispatch(
+            getGameListByUserIdAction(id)
+        )
+    },
+    addGameToGameList({gameId, gameListId}) {
+        dispatch(
+            addGameToGameListAction(gameId, gameListId)
+        )
     }
+    
 })
 
 

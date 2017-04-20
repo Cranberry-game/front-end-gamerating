@@ -38,7 +38,7 @@ class GameListDetail extends Component {
                     </div>
                 </div>*/}
                 <div className='gamelistlist-wrapper'>
-                    <GameListList games={games} removeGameFromGameList={removeGameFromGameList}/>
+                    <GameListList games={games} removeGameFromGameList={removeGameFromGameList} id={id}/>
                 </div>
                 <div className='comment-send-container'>
                     <CommentSend addReview={addGameListReview} currentUserId={currentUserId} currentUserAvatar={currentUserAvatar} id={id}/>

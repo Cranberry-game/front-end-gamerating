@@ -17,16 +17,6 @@ import '../../css/components/GameDetail.scss'
 import ImageGallery from 'react-image-gallery'
 import "react-image-gallery/styles/css/image-gallery.css"
 
-const arrays = [
-    {
-        id: 1,
-        name: "first"
-    },
-    {
-        id: 2,
-        name: "second"
-    }
-]
 
 const styles = {
     chip: {
@@ -48,6 +38,8 @@ class GameDetail extends Component {
 
     handleTouchAddToList = e => {
         e.preventDefault()
+        const { currentUserId=0, getGameListByUserId=f=>f } = this.props
+        getGameListByUserId(currentUserId)
         this.setState({
             open: true,
             anchorEl: e.currentTarget
@@ -60,8 +52,12 @@ class GameDetail extends Component {
         })
     }
 
-    handleAddToListSelected = (id) => {
-        console.log(id)
+    handleAddToListSelected = (gameListId) => {
+        const { id=0, addGameToGameList=f=>f } = this.props
+        addGameToGameList({
+            gameId: id,
+            gameListId: gameListId
+        })
     }
 
     componentWillMount() {
@@ -73,7 +69,7 @@ class GameDetail extends Component {
 
     render() {
 
-        const { id=0, title="", description="", platforms=[], gameType="", studio="", price="", totalRating=0, releaseDate="", releaseCompany="", reviews=[], createAt=0, updateAt=0, screenshots=[], cover="", currentUserId=0, currentUserAvatar="", addGameReview=f=>f } = this.props
+        const { id=0, title="", description="", platforms=[], gameType="", studio="", price="", totalRating=0, releaseDate="", releaseCompany="", reviews=[], createAt=0, updateAt=0, screenshots=[], cover="", currentUserId=0, currentUserAvatar="", addGameReview=f=>f, gamelistSuggestions=[] } = this.props
 
         return (
             <div className="game-details-wrapper">
@@ -119,7 +115,7 @@ class GameDetail extends Component {
                         <RaisedButton onTouchTap={this.handleTouchAddToList} label="Add to Game List"/>
                         <Popover open={this.state.open} anchorEl={this.state.anchorEl} anchorOrigin={{horizontal: 'left', vertical: 'bottom'}} targetOrigin={{horizontal: 'left', vertical: 'top'}} onRequestClose={this.handleRequestClose} animation={PopoverAnimationVertical}>
                             <Menu>
-                                {arrays.map(array => <MenuItem key={array.id} primaryText={array.name} onTouchTap={() => this.handleAddToListSelected(array.id)}/>)}
+                                {gamelistSuggestions.map(gamelist => <MenuItem key={gamelist.gameListId} primaryText={gamelist.gameListName} onTouchTap={() => this.handleAddToListSelected(gamelist.gameListId)}/>)}
                             </Menu>
                         </Popover>
                     </div>

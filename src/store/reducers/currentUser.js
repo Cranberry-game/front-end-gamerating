@@ -109,6 +109,15 @@ const isVerified = (state=false, action) => {
     }
 }
 
+const gamelists = (state=[], action) => {
+    switch (action.type) {
+        case C.FETCH_GAMELISTS_BY_USER_SUCCESS:
+            return action.payload
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     id,
     isAdmin,
@@ -119,4 +128,5 @@ export default combineReducers({
     email,
     isAuthenticated,
     isAuthenticating,
+    gamelists
 })

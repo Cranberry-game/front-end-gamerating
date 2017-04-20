@@ -14,7 +14,7 @@ const isFetching = (state=false, action) => {
     }
 }
 
-const gameNames = (state=[], action) => {
+const gameOrGamelistSuggestions = (state=[], action) => {
     switch(action.type) {
         case C.FETCH_SEARCH_SUGGESTIONS_SUCCESS:
             return action.payload
@@ -25,5 +25,5 @@ const gameNames = (state=[], action) => {
 
 export default combineReducers({
     isFetching,
-    gameNames
+    gameOrGamelistSuggestions
 })

@@ -4,11 +4,13 @@ import currentUser from './currentUser'
 import allGameLists from './allGameLists'
 import currentGameList from './currentGameList'
 import allGames from './allGames'
+import allUsers from './allUsers'
 import currentGame from './currentGame'
 import suggestions from './suggestions'
 import search from './search'
 import addGameList from './addGameList'
 import error from './error'
+import uploadFiles from './uploadFiles'
 import { routerReducer } from 'react-router-redux'
  
 const isLoginFormOpen = (state=false, action) => {
@@ -90,6 +92,7 @@ export default combineReducers({
     allGameLists,
     currentGameList,
     allGames,
+    allUsers,
     currentGame,
     suggestions,
     search,
@@ -100,5 +103,6 @@ export default combineReducers({
     isAddingAGame,
     error,
     isRegistering,
-    routerReducer
+    routerReducer,
+    uploadFiles
 })

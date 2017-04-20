@@ -44,7 +44,7 @@ const games = (state=[], action) => {
                 action.payload
             ]
         case C.REMOVE_GAME_TO_ADD_GAMELIST:
-            return state.filter(game => game.id !== action.payload)
+            return state.filter(game => game.gameId !== action.payload)
         default:
             return state
     }

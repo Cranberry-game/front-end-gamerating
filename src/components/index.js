@@ -2,7 +2,7 @@ import '../css/style.scss'
 import { Component } from 'react'
 import Test from './ui/Test'
 import Home from './containers/Home'
-import ManageUser from './ui/ManageUser'
+import ManageUser from './containers/ManageUser'
 import { HashRouter as Router, Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import muiTheme from './MuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -70,6 +70,30 @@ class App extends Component {
         })
     }
 
+    handleTouchManageUser = () => {
+        const { redirectToManageUser=f=>f } = this.props
+        redirectToManageUser()
+        this.setState({
+            open: false
+        })
+    }
+
+    handleTouchAddGame = () => {
+        const { redirectToAddGame=f=>f } = this.props
+        redirectToAddGame()
+        this.setState({
+            open: false
+        })
+    }
+
+    handleTouchAddGameList = () => {
+        const { redirectToAddGameList=f=>f } = this.props
+        redirectToAddGameList()
+        this.setState({
+            open: false
+        })
+    }
+
     handleTitleTouchTap = e => {
         const { redirectToHome=f=>f } = this.props
         redirectToHome()
@@ -86,7 +110,7 @@ class App extends Component {
             />,
         ]
 
-        const { isLoginFormOpen=false, isRegisterFormOpen=false, isUserSettingPopoverOpen=false, isAuthenticated=true, isErrorDialogOpen=false, errorMessage='', errorHeader='', avatar='http://img.duoziwang.com/2016/12/08/18594927932.jpg', openRegisterForm=f=>f, openLoginForm=f=>f, closeRegisterForm=f=>f, closeLoginForm=f=>f, handleLogin=f=>f, openSetting=f=>f, closeSetting=f=>f, handlelogout=f=>f, register=f=>f } = this.props
+        const { isLoginFormOpen=false, isRegisterFormOpen=false, isUserSettingPopoverOpen=false, isAuthenticated=true, isErrorDialogOpen=false, errorMessage='', errorHeader='', avatar='http://img.duoziwang.com/2016/12/08/18594927932.jpg', openRegisterForm=f=>f, openLoginForm=f=>f, closeRegisterForm=f=>f, closeLoginForm=f=>f, handleLogin=f=>f, openSetting=f=>f, closeSetting=f=>f, handlelogout=f=>f, register=f=>f, isAdmin=false, isVerified=false } = this.props
 
         const loginButtonStyle = {
             bottom: -12,
@@ -124,7 +148,9 @@ class App extends Component {
                                         onRequestClose={this.handleRequestClose}
                                         >
                                         <Menu>
-                                            <MenuItem primaryText="Settings" />
+                                            {(isAdmin)?<MenuItem primaryText="Manage Users" onTouchTap={this.handleTouchManageUser} />: null}
+                                            {(isAdmin)?<MenuItem primaryText="Add Game" onTouchTap={this.handleTouchAddGame} />: null}
+                                            {(isVerified || isAdmin)?<MenuItem primaryText="Add Game List" onTouchTap={this.handleTouchAddGameList} />: null}
                                             <MenuItem primaryText="Sign out" onTouchTap={this.handleTouchLogout}/>
                                         </Menu>
                                     </Popover>
@@ -175,7 +201,9 @@ const mapStateToProps = state => ({
     avatar: state.currentUser.avatar,
     errorMessage: state.error.errorMessage,
     errorHeader: state.error.errorHeader,
-    isErrorDialogOpen: state.error.isErrorDialogOpen
+    isErrorDialogOpen: state.error.isErrorDialogOpen,
+    isAdmin: state.currentUser.isAdmin,
+    isVerified: state.currentUser.isVerified
 })
         
 const mapDispatchToProps = dispatch => ({
@@ -232,6 +260,21 @@ const mapDispatchToProps = dispatch => ({
     redirectToHome() {
         dispatch(
             push('/')
+        )
+    },
+    redirectToManageUser() {
+        dispatch(
+            push('/manageuser')
+        )
+    },
+    redirectToAddGame() {
+        dispatch(
+            push('/addgame')
+        )
+    },
+    redirectToAddGameList() {
+        dispatch(
+            push('/addgamelist')
         )
     }
     

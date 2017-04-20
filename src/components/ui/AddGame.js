@@ -70,13 +70,9 @@ class AddGame extends Component {
         })
     }
 
-    handleDropScreenshots = (files) => {
-        console.log('Received files: ', JSON.stringify(files[0]))
-    }
-
     handleAddGame = () => {
 
-        const { addGame=f=>f, uploadCover } = this.props
+        const { addGame=f=>f, uploadCover=f=>f, gameCover='' } = this.props
 
         addGame({
             title: this._name,
@@ -86,40 +82,42 @@ class AddGame extends Component {
             releaseDate: `${this._date.getUTCFullYear()}-${this._date.getUTCMonth()+1}-${this._date.getUTCDate()}`,
             studio: this._studio,
             platform: this.state.platformValues,
-            cover: "http://img.dota2.com.cn/maps/c3/44/c34412ad9921e6def2481c52bd19c34f1489982255.jpg",
+            cover: gameCover,
             description: this._description,
             screenshot: ["http://img.dota2.com.cn/maps/c3/44/c34412ad9921e6def2481c52bd19c34f1489982255.jpg"]
         })
-        // console.log(this._name, this._description, this._price, this._releaseCompany, this._studio, this.state.gameTypeValue, this.state.platformValues, this._date.getUTCMonth())
     }
 
-    handleFileDropped = acceptedFiles => {
-        // console.log(JSON.stringify(files[0]))
-        // console.log(files[0].preview)
-        
-        // let file = acceptedFiles[0]
-        // let data = new FormData()
-        // data.append('files', file)
+    handleCoverDropped = acceptedFiles => {
+        const { uploadCover=f=>f } = this.props
+        uploadCover(acceptedFiles)
+    }
 
-        // fetch('http://gamerating.info/api/v1/upload/cover', {
-        //     method: 'POST',
-        //     body: data
-        // })
-        // .then(res => res.json())
-        // .then(res => console.log(res.url))
-
-        const { uploadCover, uploadScreenShots } = this.props
+    handleScreenshotsDropped = acceptedFiles => {
+        const { uploadScreenShots=f=>f } = this.props
         uploadScreenShots(acceptedFiles)
     }
 
     render() {
 
-        const {  } = this.props
+        const { hasUploadedGameCover=false, gameCover="" } = this.props
+
+        console.log('http://' + gameCover)
 
         return(
             <div>
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <div className='add-game-wrapper'>
+                        {(hasUploadedGameCover)?
+                            <div className='upload-game-cover'>
+                                <img src={gameCover} alt='Cover' />
+                            </div>:
+                            <div className='add-cover-wrapper'>
+                                <Dropzone onDrop={this.handleCoverDropped} multiple={false}>
+                                    <div>Try dropping some files here, or click to select files to upload.</div>
+                                </Dropzone>
+                            </div>
+                        }
                         <div className='add-game-name-wrapper'>
                             <TextField hintText="Game Name" onChange={(event,input) => this._name=input} fullWidth={true}/><br />
                         </div>
@@ -149,8 +147,7 @@ class AddGame extends Component {
                             <DatePicker hintText="Release Date" onChange={(event, input) => this._date = input} fullWidth={true}/>
                         </div>
                         <div className='add-screenshots-wrapper'>
-                            {/*<DropzoneComponent config={uploadComponentConfig} djsConfig={uploadDjsConfig} eventHandlers={uploadEventHandlers}/>*/}
-                            <Dropzone onDrop={this.handleFileDropped} multiple={true}>
+                            <Dropzone onDrop={this.handleScreenshotsDropped} multiple={true}>
                                 <div>Try dropping some files here, or click to select files to upload.</div>
                             </Dropzone>
                         </div>

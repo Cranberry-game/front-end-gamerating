@@ -48,6 +48,15 @@ export const closeErrorDialogAction = () => ({
     type: C.CLOSE_ERROR_DIALOG
 })
 
+export const initUploadFilesAction = () => ({
+    type: C.INIT_UPLOAD_FILES
+})
+
+export const deleteGameFromAddGamelistAction = id => ({
+    type: C.REMOVE_GAME_TO_ADD_GAMELIST,
+    payload: id
+})
+
 export const login = (email, password) => dispatch => {
     dispatch({
         type: C.LOGIN_USER_REQUEST
@@ -263,7 +272,7 @@ export const queryGameListByIdAction = id => dispatch => {
 
 export const addGameListAction = ( name, userId, description, img, games ) => dispatch => {
     dispatch({
-        type: C.FETCH_GAME_SUGGESTIONS_REQUEST
+        type: C.ADD_GAME_LIST_REQUEST
     })
     fetch(apiUrl + 'gamelist', {
         method: 'post',
@@ -275,7 +284,7 @@ export const addGameListAction = ( name, userId, description, img, games ) => di
             userId: userId,
             gameId: games,
             name: name,
-            img: "http://img1.joyreactor.cc/pics/post/full/Kemono-Friends-Anime-Serval-(Kemono-Friends)-Kaban-3710791.jpeg",
+            img: img,
             description: description,
             totalRate: 5
         })
@@ -283,12 +292,18 @@ export const addGameListAction = ( name, userId, description, img, games ) => di
     .then(checkHttpStatus)
     .then(() => {
         dispatch({
-            type: C.FETCH_GAME_SUGGESTIONS_SUCCESS
+            type: C.ADD_GAME_LIST_SUCCESS
         })
+        dispatch(
+            addErrorDialogAction('Create Success', 'create game list success')
+        )
         console.log('create success')
     })
     
     .catch(err => {
+        dispatch({
+            type: C.ADD_GAME_LIST_FAILED
+        })
         dispatch(
             addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
         )
@@ -417,8 +432,11 @@ export const addGameAction = ( title, gameType, price, releaseCompany, releaseDa
     })
 }
 
-export const uploadScreenShotsAction = acceptedFiles => dispatch => {
+export const uploadGameScreenShotsAction = acceptedFiles => dispatch => {
 
+    dispatch({
+        type: C.UPLOAD_GAME_SCREENSHOT_REQUEST
+    })
     let data = new FormData()
     acceptedFiles.forEach(file => data.append('files', file))
     // data.append('files', acceptedFiles)
@@ -442,8 +460,11 @@ export const uploadScreenShotsAction = acceptedFiles => dispatch => {
         )
     })
 }
-export const uploadCoverAction = acceptedFiles => dispatch => {
+export const uploadGameCoverAction = acceptedFiles => dispatch => {
 
+    dispatch({
+        type: C.UPLOAD_GAME_COVER_REQUEST
+    })
     let file = acceptedFiles[0]
     let data = new FormData()
     data.append('files', file)
@@ -460,16 +481,58 @@ export const uploadCoverAction = acceptedFiles => dispatch => {
     .then(parseJSON)
     .then(res => {
         console.log(res.url)
+        dispatch({
+            type: C.UPLOAD_GAME_COVER_SUCCESS,
+            payload: res.url
+        })
     })
     .catch(err => {
         console.error(err)
+        dispatch({
+            type: C.UPLOAD_GAME_COVER_FAILED
+        })
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+export const uploadGamelistCoverAction = acceptedFiles => dispatch => {
+
+    dispatch({
+        type: C.UPLOAD_GAMELIST_COVER_REQUEST
+    })
+    let file = acceptedFiles[0]
+    let data = new FormData()
+    data.append('files', file)
+
+    fetch(apiUrl + 'upload/cover', {
+        method: 'POST',
+        headers: {
+            'auth': store.getState().currentUser.token
+        },
+        body: data
+    })
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        console.log(res.url)
+        dispatch({
+            type: C.UPLOAD_GAMELIST_COVER_SUCCESS,
+            payload: res.url
+        })
+    })
+    .catch(err => {
+        console.error(err)
+        dispatch({
+            type: C.UPLOAD_GAMELIST_COVER_FAILED
+        })
         dispatch(
             addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
         )
     })
 }
 
-export const removeGameFromGameListAction = id => dispatch => {
+export const removeGameFromGameListAction = (gameId, gameListId) => dispatch => {
     dispatch({
         type: C.REMOVE_GAME_FROM_GAMELIST_REQUEST
     })
@@ -481,22 +544,21 @@ export const removeGameFromGameListAction = id => dispatch => {
             'type': 'delete'
         },
         body: JSON.stringify({
-            gameId: id,
-            gameListId: id
+            gameId: gameId,
+            gameListId: gameListId
         })
     })
     .then(checkHttpStatus)
     .then(res => {
-        console.log("remove success")
         dispatch({
             type: C.REMOVE_GAME_FROM_GAMELIST_SUCCESS,
-            payload: id
+            payload: gameId
         })
     })
     .catch(err => {
         dispatch({
             type: C.REMOVE_GAME_FROM_GAMELIST_FAILED,
-            payload: id
+            payload: gameId
         })
         dispatch(
             addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
@@ -510,7 +572,7 @@ export const queryGameByPrefixAction = prefix => dispatch => {
     dispatch({
         type: C.FETCH_GAME_SUGGESTIONS_REQUEST
     })
-    fetch(apiUrl + 'suggest?name=' + prefix, {
+    fetch(apiUrl + 'game/suggest?name=' + prefix, {
         method: 'get',
         headers: {
             'auth': store.getState().currentUser.token
@@ -532,7 +594,202 @@ export const queryGameByPrefixAction = prefix => dispatch => {
             addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
         )
     })
+}
+export const addGameToAddGamelistByFullnameAction = fullname => dispatch => {
+    fetch(apiUrl + 'game/suggest?fullname=' + fullname, {
+        method: 'get',
+        headers: {
+            'auth': store.getState().currentUser.token
+        }
+    })
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        if (store.getState().addGameList.games.every((cur, index, array) => cur.gameId !== res.gameId)) {
+            dispatch({
+                type: C.ADD_GAME_TO_ADD_GAMELIST,
+                payload: res
+            })
+        }
+    })
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
 
+export const queryAllUsersAction = () => dispatch => {
+    dispatch({
+        type: C.FETCH_USERS_REQUEST
+    })
+    fetch(apiUrl + 'user/all', {
+        method: 'get',
+        headers: {
+            'auth': store.getState().currentUser.token
+        }
+    })
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        dispatch({
+            type: C.FETCH_USERS_SUCCESS,
+            payload: res
+        })
+    })
+    .catch(err => {
+        dispatch({
+            type: C.FETCH_USERS_FAILED
+        })
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+
+export const toggleUserAdminAction = (id, isAdmin) => dispatch => {
+    fetch(apiUrl + 'user/auth', {
+        method: 'put',
+        headers: {
+            'auth': store.getState().currentUser.token,
+            'Content-Type': 'application/json',
+            'type': 'priority'
+        },
+        body: JSON.stringify({
+            userId: id,
+            isAdmin: isAdmin
+        })
+    })
+    .then(checkHttpStatus)
+    .then(res => {
+        dispatch({
+            type: C.SET_USER_ADMIN,
+            payload: {
+                id: id,
+                isAdmin: isAdmin
+            }
+        })
+    })
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+export const toggleUserVerifityAction = (id, isVerified) => dispatch => {
+    fetch(apiUrl + 'user/auth', {
+        method: 'put',
+        headers: {
+            'auth': store.getState().currentUser.token,
+            'Content-Type': 'application/json',
+            'type': 'verify'
+        },
+        body: JSON.stringify({
+            userId: id,
+            isVerified: isVerified
+        })
+    })
+    .then(checkHttpStatus)
+    .then(res => {
+        dispatch({
+            type: C.SET_USER_VERIFITY,
+            payload: {
+                id: id,
+                isVerified: isVerified
+            }
+        })
+    })
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+export const deleteUserAction = id => dispatch => {
+    fetch(apiUrl + 'user?id=' + id, {
+        method: 'delete',
+        headers: {
+            'auth': store.getState().currentUser.token
+        }
+    })
+    .then(checkHttpStatus)
+    .then(res => {
+        dispatch({
+            type: C.DELETE_USER,
+            payload: id
+        })
+    })
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+
+export const getGameOrGamelistSuggestionsAction = name => dispatch => {
+    dispatch({
+        type: C.FETCH_SEARCH_SUGGESTIONS_REQUEST
+    })
+    fetch(apiUrl + 'search?name=' + name)
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        dispatch({
+            type: C.FETCH_SEARCH_SUGGESTIONS_SUCCESS,
+            payload: res
+        })
+    })
+    .catch(err => {
+        dispatch({
+            type: C.FETCH_SEARCH_SUGGESTIONS_FAILED
+        })
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+
+export const getGameListByUserIdAction = id => dispatch => {
+    fetch(apiUrl + 'gamelist?uid=' + id)
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        dispatch({
+            type: C.FETCH_GAMELISTS_BY_USER_SUCCESS,
+            payload: res
+        })
+    })
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
+
+export const addGameToGameListAction = (gameId, gameListId) => dispatch => {
+    fetch(apiUrl + 'gamelist', {
+        method: 'put',
+        headers: {
+            'type': 'add',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            gameId: gameId,
+            gameListId: gameListId
+        })
+    })
+    .then(checkHttpStatus)
+    .then(res => {
+        console.log(gameId, gameListId)
+        dispatch({
+            type: C.ADD_GAME_TO_GAMELIST_SUCCESS
+        })
+    })
+    .catch(err => {
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
 }
 
 const anyElementsEmpty = elements => {

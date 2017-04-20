@@ -1,10 +1,14 @@
 import AddGame from '../ui/AddGame'
 import { connect } from 'react-redux'
-import { addGameAction, uploadCoverAction, uploadScreenShotsAction } from '../../store/actions'
+import { addGameAction, uploadGameCoverAction, uploadGameScreenShotsAction } from '../../store/actions'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => ({
-    token: state.currentUser.token
+    token: state.currentUser.token,
+    gameCover: state.uploadFiles.gameCover,
+    gameScreenshots: state.uploadFiles.gameScreenshots,
+    hasUploadedGameCover: state.uploadFiles.hasUploadedGameCover
+
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -16,12 +20,12 @@ const mapDispatchToProps = dispatch => ({
     },
     uploadCover(acceptedFiles) {
         dispatch(
-            uploadCoverAction(acceptedFiles)
+            uploadGameCoverAction(acceptedFiles)
         )
     },
     uploadScreenShots(acceptedFiles) {
         dispatch(
-            uploadScreenShotsAction(acceptedFiles)
+            uploadGameScreenShotsAction(acceptedFiles)
         )
     }
 })

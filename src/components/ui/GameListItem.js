@@ -33,9 +33,11 @@ class GameListItem extends Component {
 
     handleRemoveGameFromGameList = e => {
         e.preventDefault()
-        console.log("touched")
-        const { gameId=0, removeGameFromGameList=f=>f } = this.props
-        removeGameFromGameList(gameId)
+        const { gameId=0, removeGameFromGameList=f=>f, id=0 } = this.props
+        removeGameFromGameList({
+            gameId: gameId,
+            gameListId: id
+        })
     }
 
     render() {

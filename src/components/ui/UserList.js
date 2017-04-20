@@ -51,11 +51,11 @@ const tilesData = [
   },
 ];
 
-const UserList = () => {
+const UserList = ({ users=[], toggleUserAdmin=f=>f, toggleUserVerifity=f=>f, deleteUser=f=>f }) => {
     return (
         <div className="userlist-container">
-            {tilesData.map((tile, i) => (
-                <UserListItem key={i}/>
+            {users.map((user) => (
+                <UserListItem key={user.id} id={user.id} userName={user.name} isAdmin={user.isAdmin} isVerified={user.isVerified} avatar={user.avatar} toggleUserAdmin={toggleUserAdmin} toggleUserVerifity={toggleUserVerifity} deleteUser={deleteUser}/>
             ))}
         </div>
     )

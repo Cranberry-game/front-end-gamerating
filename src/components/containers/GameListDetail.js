@@ -26,9 +26,9 @@ const mapDispatchToProps = dispatch => ({
             addGameListReviewAction(userId, rate, content, id)
         )
     },
-    removeGameFromGameList(id) {
+    removeGameFromGameList({gameId, gameListId}) {
         dispatch(
-            removeGameFromGameListAction(id)
+            removeGameFromGameListAction(gameId, gameListId)
         )
     }
 })

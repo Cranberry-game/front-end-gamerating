@@ -1,10 +1,10 @@
 import Home from '../ui/Home'
 import { connect } from 'react-redux'
-import { search } from '../../store/actions'
+import { search, getGameOrGamelistSuggestionsAction } from '../../store/actions'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => ({
-    
+    gameOrGamelistSuggestions: state.suggestions.gameOrGamelistSuggestions
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -12,7 +12,13 @@ const mapDispatchToProps = dispatch => ({
         dispatch(
             search(searchText)
         )
+    },
+    getGameOrGamelistSuggestions(searchText) {
+        dispatch(
+            getGameOrGamelistSuggestionsAction(searchText)
+        )
     }
+    
 })
 
 
