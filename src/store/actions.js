@@ -439,7 +439,6 @@ export const uploadGameScreenShotsAction = acceptedFiles => dispatch => {
     })
     let data = new FormData()
     acceptedFiles.forEach(file => data.append('files', file))
-    // data.append('files', acceptedFiles)
 
     fetch(apiUrl + 'upload/scshot', {
         method: 'POST',
@@ -451,10 +450,15 @@ export const uploadGameScreenShotsAction = acceptedFiles => dispatch => {
     .then(checkHttpStatus)
     .then(parseJSON)
     .then(res => {
-        console.log(JSON.stringify(res.url))
+        dispatch({
+            type: C.UPLOAD_GAME_SCREENSHOT_SUCCESS,
+            payload: res.url
+        })
     })
     .catch(err => {
-        console.error(err)
+        dispatch({
+            type: C.UPLOAD_GAME_SCREENSHOT_FAILED
+        })
         dispatch(
             addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
         )

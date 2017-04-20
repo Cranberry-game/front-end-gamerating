@@ -6,6 +6,9 @@ import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import DatePicker from 'material-ui/DatePicker'
+import {GridList, GridTile} from 'material-ui/GridList'
+import IconButton from 'material-ui/IconButton'
+import StarBorder from 'material-ui/svg-icons/toggle/star-border'
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
 import fetch from 'isomorphic-fetch'
@@ -30,6 +33,22 @@ const platforms = [
     'Wii U', 
     'PC'
 ]
+
+const styles = {
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+    },
+    gridList: {
+        display: 'flex',
+        flexWrap: 'nowrap',
+        overflowX: 'auto',
+    },
+    titleStyle: {
+        color: 'rgb(0, 188, 212)',
+    },
+}
 
 const uploadComponentConfig = {
     iconFiletypes: ['.jpg', '.png', '.gif'],
@@ -72,8 +91,7 @@ class AddGame extends Component {
 
     handleAddGame = () => {
 
-        const { addGame=f=>f, uploadCover=f=>f, gameCover='' } = this.props
-
+        const { addGame=f=>f, uploadCover=f=>f, gameCover='', gameScreenshots=[] } = this.props
         addGame({
             title: this._name,
             gameType: this.state.gameTypeValue,
@@ -84,7 +102,7 @@ class AddGame extends Component {
             platform: this.state.platformValues,
             cover: gameCover,
             description: this._description,
-            screenshot: ["http://img.dota2.com.cn/maps/c3/44/c34412ad9921e6def2481c52bd19c34f1489982255.jpg"]
+            screenshot: gameScreenshots
         })
     }
 
@@ -100,9 +118,7 @@ class AddGame extends Component {
 
     render() {
 
-        const { hasUploadedGameCover=false, gameCover="" } = this.props
-
-        console.log('http://' + gameCover)
+        const { hasUploadedGameCover=false, gameCover="", gameScreenshots=[] } = this.props
 
         return(
             <div>
@@ -145,6 +161,17 @@ class AddGame extends Component {
                         </div>
                         <div className='add-game-release-time'>
                             <DatePicker hintText="Release Date" onChange={(event, input) => this._date = input} fullWidth={true}/>
+                        </div>
+                        <div className='game-screenshots-wrapper'>
+                            <div style={styles.root}>
+                                <GridList style={styles.gridList} cols={2.2}>
+                                {gameScreenshots.map((gameScreenshot, i) => (
+                                    <GridTile key={i}>
+                                    <img src={gameScreenshot} />
+                                    </GridTile>
+                                ))}
+                                </GridList>
+                            </div>
                         </div>
                         <div className='add-screenshots-wrapper'>
                             <Dropzone onDrop={this.handleScreenshotsDropped} multiple={true}>

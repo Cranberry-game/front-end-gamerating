@@ -85,7 +85,7 @@ const gameScreenshots = (state=[], action) => {
         case C.UPLOAD_GAME_SCREENSHOT_SUCCESS:
             return [
                 ...state,
-                action.payload
+                ...action.payload
             ]
         case C.INIT_UPLOAD_FILES:
             return []
