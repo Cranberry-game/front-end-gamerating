@@ -1,7 +1,8 @@
 @import "../style";
 
 .comment-send {
-    margin: 10px 0;
+    width: 70%;
+    margin: 10px auto;
     background: white;
     .user-face {
         float: left;
@@ -12,7 +13,7 @@
     .textarea-container {
         position: relative;
         margin-left: 85px;
-        margin-right: 30%;
+        margin-right: 10%;
 
         .comment-submit {
             width: 70px;
