@@ -11,6 +11,7 @@ import search from './search'
 import addGameList from './addGameList'
 import error from './error'
 import uploadFiles from './uploadFiles'
+import register from './register'
 import { routerReducer } from 'react-router-redux'
  
 const isLoginFormOpen = (state=false, action) => {
@@ -33,6 +34,24 @@ const isRegisterFormOpen = (state=false, action) => {
         case C.OPEN_REGISTER_FORM:
             return true
         case C.CLOSE_REGISTER_FORM:
+            return false
+        case C.LOGIN_USER_SUCCESS:
+            return false
+        case C.LOGIN_USER_FAILURE:
+            return false
+        case C.REGISTER_USER_SUCCESS:
+            return false
+        case C.REGISTER_USER_FAILURE:
+            return false
+        default:
+            return state
+    }
+} 
+const isEditAvatarOpen = (state=false, action) => {
+    switch (action.type) {
+        case C.OPEN_EDIT_AVATAR:
+            return true
+        case C.CLOSE_EDIT_AVATAR:
             return false
         case C.LOGIN_USER_SUCCESS:
             return false
@@ -104,5 +123,7 @@ export default combineReducers({
     error,
     isRegistering,
     routerReducer,
-    uploadFiles
+    uploadFiles,
+    isEditAvatarOpen,
+    register
 })

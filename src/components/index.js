@@ -20,11 +20,12 @@ import ExpandingSearchButton from './ui/ExpandingSearchButton'
 import FlatButton from 'material-ui/FlatButton'
 import LoginForm from './ui/LoginForm'
 import RegisterForm from './ui/RegisterForm'
+import EditAvatar from './ui/EditAvatar'
 import AddGame from './containers/AddGame'
 import AddGameList from './containers/AddGameList'
 import { connect } from 'react-redux'
 import '../css/components/index.scss'
-import { openLogin, closeLogin, openRegister, closeRegister, openSettingPopover, closeSettingPopover, login, logout, closeErrorDialogAction, registerAction } from '../store/actions'
+import { openLogin, closeLogin, openRegister, closeRegister, openSettingPopover, closeSettingPopover, login, logout, closeErrorDialogAction, registerAction, openEditAvatarPopoverAction, closeEditAvatarPopoverAction, saveTempRegisterAction, initTempRegisterAction, uploadAvatarAction } from '../store/actions'
 import { ConnectedRouter, push } from 'react-router-redux'
 import history from '../history'
 
@@ -110,7 +111,7 @@ class App extends Component {
             />,
         ]
 
-        const { isLoginFormOpen=false, isRegisterFormOpen=false, isUserSettingPopoverOpen=false, isAuthenticated=true, isErrorDialogOpen=false, errorMessage='', errorHeader='', avatar='http://img.duoziwang.com/2016/12/08/18594927932.jpg', openRegisterForm=f=>f, openLoginForm=f=>f, closeRegisterForm=f=>f, closeLoginForm=f=>f, handleLogin=f=>f, openSetting=f=>f, closeSetting=f=>f, handlelogout=f=>f, register=f=>f, isAdmin=false, isVerified=false } = this.props
+        const { isLoginFormOpen=false, isRegisterFormOpen=false, isEditAvatarOpen=false, isUserSettingPopoverOpen=false, isAuthenticated=true, isErrorDialogOpen=false, errorMessage='', errorHeader='', avatar='http://img.duoziwang.com/2016/12/08/18594927932.jpg', openRegisterForm=f=>f, openLoginForm=f=>f, closeRegisterForm=f=>f, closeLoginForm=f=>f, handleLogin=f=>f, openSetting=f=>f, closeSetting=f=>f, handlelogout=f=>f, register=f=>f, isAdmin=false, isVerified=false, closeEditAvatarPopover=f=>f, openEditAvatarPopover=f=>f, registerUserName='', registerEmail='', registerPassword='', registerAge='', registerAddress='', registerPhone='', saveTempRegister=f=>f, initTempRegister=f=>f, uploadAvatar=f=>f, registerAvatar='' } = this.props
 
         const loginButtonStyle = {
             bottom: -12,
@@ -185,7 +186,8 @@ class App extends Component {
                         <Route component={NoMatch} />
                     </Switch>
                     <LoginForm isLoginFormOpen={isLoginFormOpen} closeLoginForm={closeLoginForm} handleLogin={handleLogin}/>
-                    <RegisterForm isRegisterFormOpen={isRegisterFormOpen} closeRegisterForm={closeRegisterForm} register={register}/>
+                    <RegisterForm isRegisterFormOpen={isRegisterFormOpen} closeRegisterForm={closeRegisterForm} register={register} openEditAvatarPopover={openEditAvatarPopover} userName={registerUserName} email={registerEmail} password={registerPassword} age={registerAge} address={registerAddress} phone={registerPhone} saveTempRegister={saveTempRegister} initTempRegister={initTempRegister} avatar={registerAvatar}/>
+                    <EditAvatar isEditAvatarOpen={isEditAvatarOpen} openEditAvatarPopover={openEditAvatarPopover} closeEditAvatarPopover={closeEditAvatarPopover} openEditAvatarPopover={openEditAvatarPopover} openRegisterForm={openRegisterForm} uploadAvatar={uploadAvatar} />
                 </div>
             </ConnectedRouter>
             // </Router>
@@ -196,6 +198,7 @@ class App extends Component {
 const mapStateToProps = state => ({
     isLoginFormOpen: state.isLoginFormOpen,
     isRegisterFormOpen: state.isRegisterFormOpen,
+    isEditAvatarOpen: state.isEditAvatarOpen,
     isUserSettingPopoverOpen: state.isUserSettingPopoverOpen,
     isAuthenticated: state.currentUser.isAuthenticated,
     avatar: state.currentUser.avatar,
@@ -203,7 +206,14 @@ const mapStateToProps = state => ({
     errorHeader: state.error.errorHeader,
     isErrorDialogOpen: state.error.isErrorDialogOpen,
     isAdmin: state.currentUser.isAdmin,
-    isVerified: state.currentUser.isVerified
+    isVerified: state.currentUser.isVerified,
+    registerUserName: state.register.userName,
+    registerEmail: state.register.email,
+    registerPassword: state.register.password,
+    registerAge: state.register.age,
+    registerAddress: state.register.address,
+    registerPhone: state.register.phone,
+    registerAvatar: state.register.avatar
 })
         
 const mapDispatchToProps = dispatch => ({
@@ -275,6 +285,31 @@ const mapDispatchToProps = dispatch => ({
     redirectToAddGameList() {
         dispatch(
             push('/addgamelist')
+        )
+    },
+    closeEditAvatarPopover() {
+        dispatch(
+            closeEditAvatarPopoverAction()
+        )
+    },
+    openEditAvatarPopover() {
+        dispatch(
+            openEditAvatarPopoverAction()
+        )
+    },
+    initTempRegister() {
+        dispatch(
+            initTempRegisterAction()
+        )
+    },
+    saveTempRegister({userName, email, password, age, address, phone}) {
+        dispatch(
+            saveTempRegisterAction(userName, email, password, age, address, phone)
+        )
+    },
+    uploadAvatar(acceptedFile) {
+        dispatch(
+            uploadAvatarAction(acceptedFile)
         )
     }
     

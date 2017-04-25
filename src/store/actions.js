@@ -32,6 +32,30 @@ export const closeSettingPopover = () => ({
     type: C.OPEN_SETTING_POPOVER
 })
 
+export const openEditAvatarPopoverAction = () => ({
+    type: C.OPEN_EDIT_AVATAR
+})
+
+export const closeEditAvatarPopoverAction = () => ({
+    type: C.CLOSE_EDIT_AVATAR
+})
+
+export const saveTempRegisterAction = (userName, email, password, age, address, phone) => ({
+    type: C.SAVE_TEMP_REGISTER,
+    payload: {
+        userName: userName,
+        email: email,
+        password: password, 
+        age: age, 
+        address: address, 
+        phone: phone
+    }
+})
+
+export const initTempRegisterAction = () => ({
+    type: C.INIT_TEMP_REGISTER
+})
+
 export const logout = () => ({
     type: C.LOGOUT_USER
 })
@@ -124,6 +148,9 @@ export const registerAction = (email, name, password, avatar, age, address, phon
         dispatch({
             type: C.REGISTER_USER_SUCCESS
         }) 
+        dispatch(
+            initTempRegisterAction()
+        )
         dispatch(
             addErrorDialogAction("Register Success", "Enjoy!")
         )
@@ -432,6 +459,38 @@ export const addGameAction = ( title, gameType, price, releaseCompany, releaseDa
     })
 }
 
+export const uploadAvatarAction = acceptedFiles => dispatch => {
+
+    dispatch({
+        type: C.UPLOAD_AVATAR_REQUEST
+    })
+    let data = new FormData()
+    data.append('files', acceptedFiles)
+
+    fetch(apiUrl + 'upload/avatar', {
+        method: 'POST',
+        headers: {
+            'auth': store.getState().currentUser.token
+        },
+        body: data
+    })
+    .then(checkHttpStatus)
+    .then(parseJSON)
+    .then(res => {
+        dispatch({
+            type: C.UPLOAD_AVATAR_SUCCESS,
+            payload: res.url
+        })
+    })
+    .catch(err => {
+        dispatch({
+            type: C.UPLOAD_AVATAR_FAILED
+        })
+        dispatch(
+            addErrorDialogAction('Error: ' + err.response.status, err.response.statusText)
+        )
+    })
+}
 export const uploadGameScreenShotsAction = acceptedFiles => dispatch => {
 
     dispatch({
