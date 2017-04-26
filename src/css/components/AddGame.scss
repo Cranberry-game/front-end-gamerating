@@ -40,20 +40,7 @@
     }
 
     .game-screenshots-wrapper {
-        height: 250px;
-     	display: -webkit-flex; 
-		display: flex; 
-		-webkit-align-items: center; 
-		align-items: center; 
-		-webkit-justify-content: center; 
-        justify-content: center; 
-        overflow: hidden;  
-
-        img {
-            display: block;
-            margin-bottom: 20px;
-            height: 100%;
-        }
+        width: 100%
     }
 
     .add-screenshots-wrapper {

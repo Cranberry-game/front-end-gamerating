@@ -37,7 +37,7 @@ const Home = ({ gameOrGamelistSuggestions=[], handleUpdateInput=f=>f, homeSearch
             <div id="bg">
                 {/*<img src="http://img13.deviantart.net/9b3f/i/2015/288/3/1/aeolian_by_wlop-d9ctyhy.jpg" />*/}
 
-                <iframe  src="https://www.youtube.com/embed/jwjGw9A37P4?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=jwjGw9A37P4" frameborder="0" allowfullscreen></iframe>     
+                <iframe  src="https://www.youtube.com/embed/jwjGw9A37P4?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=jwjGw9A37P4" frameBorder="0" allowFullScreen></iframe>     
                 {/*need to change video_ID behind "embed/"and"playlist=" to change video, get ID from youtube by click sharing.*/}
 
                 </div>
